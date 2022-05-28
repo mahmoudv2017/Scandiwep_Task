@@ -1,0 +1,42 @@
+.cart{
+    background-color: blueviolet;
+    position: absolute;
+    top: 40%;
+    right: 10%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.top_div{
+    color: white;
+    background-color: rgb(43, 144, 226);
+}
+
+.data{
+    display: flex;
+}
+
+.count{
+    margin: 0;
+    padding: 0px;
+    flex-direction: column;
+    gap: 36%;
+    background-color: rgb(255, 86, 86);
+}
+
+.count li:nth-child(1){
+    border: 1px solid black;
+}
+.count li:nth-child(3){
+    border: 1px solid black;
+}
+
+.shirt_details{
+    display: flex;
+
+}
+
+.shirt_details ul{
+    display: flex;
+}

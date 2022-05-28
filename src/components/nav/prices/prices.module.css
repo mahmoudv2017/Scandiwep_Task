@@ -1,0 +1,29 @@
+.prices{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    /* gap: 14%; */
+    width: 114px;
+    left: 87%;
+    top: 14%;
+    bottom: 50%;
+    background-color: aqua;
+    justify-content: center;
+    align-items: center;
+}
+
+.prices li{
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.prices li:hover{
+    cursor: pointer;
+    background-color: rgb(189, 104, 104);
+    
+}
