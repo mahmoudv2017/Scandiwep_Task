@@ -8,8 +8,9 @@ import Wrapper from '../hoc/wrapper'
 
 
 class Nav extends Component {
-    state = {  } 
+  
     render() { 
+        
         return (
 
             <Wrapper>

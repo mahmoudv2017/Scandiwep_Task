@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+}
+
+.count{
+    margin: 0;
+    padding: 0px;
+    flex-direction: column;
+    gap: 36%;
+    background-color: rgb(255, 86, 86);
+}
+
+.count li:nth-child(1){
+    border: 1px solid black;
+}
+.count li:nth-child(3){
+    border: 1px solid black;
+}
+
+.bigger_container{
+    display: flex;
+    flex-direction: row;
+}
