@@ -1,0 +1,24 @@
+.header{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 42px;
+    line-height: 160%;
+    padding-left: 5rem;
+}
+.contain{
+    position: absolute;
+    left: 0%;
+    top: 11%;
+    right: 0%;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(min(500px , 100%),.2fr));
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    justify-items: center;
+}
+

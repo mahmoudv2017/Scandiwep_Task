@@ -18,6 +18,7 @@
 }
 
 .bigger_container{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 200px;
 }

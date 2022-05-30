@@ -12,13 +12,15 @@ class ItemDesc extends React.Component {
     render() { 
         let props = this.state
 
+        console.log(props)
+     
         return (
             <div className={style.bigger_container} key={props.key}>
                 <div className={style.container}>
                     <div>
-                        <p>{props.item.shirt_title}</p>
+                        <p>{props.item.name}</p>
 
-                        <p>{props.item.price}</p>
+                        <p>{props.item.prices[0].currency.symbol}  {props.item.prices[0].amount}</p>
 
                         <p>Size : </p>
 
@@ -39,8 +41,8 @@ class ItemDesc extends React.Component {
 
                     <ul className={style.count}>
                         <li onClick={ () => props.incrementer(props.index) } >+</li>
-                        <li>{props.item.number_of_items}</li>
-                        <li onClick={props.decremnter}>-</li>
+                        <li>{props.item.count}</li>
+                        <li onClick={ () => props.decremnter(props.index) }>-</li>
                     </ul>
                 </div>
 

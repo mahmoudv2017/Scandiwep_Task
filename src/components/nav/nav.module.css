@@ -6,11 +6,12 @@ ul{
 
 nav{
     display: flex;
-    position: absolute;
+    position: relative;
     inset: 0;
     background-color: #fff;
     height: 80px;
     align-items: center;
+    z-index: 10000;
 }
 
 .logo{
@@ -40,6 +41,7 @@ nav{
 .left_list li{
     height: 30px;
     padding: 0px 2px;
+    transition: .5s all;
     border-bottom: 2px solid transparent;
 
 }
@@ -69,13 +71,15 @@ nav{
 .right_list li:first-child{
     width: 12px;
     height: 29px;
-
+    cursor: pointer;
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
     
 }
+
+
 
 .right_list li:first-child::after{
     content: '';

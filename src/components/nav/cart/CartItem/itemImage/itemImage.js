@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-
+import { Component } from 'react';
+import style from "./itemImage.module.css"
 
 class ItemImage extends Component {
     constructor(props){
@@ -14,7 +14,7 @@ class ItemImage extends Component {
         let item = this.state.item
         return (
             <div > 
-                <img src={item.img_url} alt=""/>
+                <img className={style.image_size} src={item.gallery[0]} alt={item.gallery[1]}/>
             </div>
         );
     }
