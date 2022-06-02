@@ -12,7 +12,7 @@ class Backdrop extends Component {
     
     render() { 
 
-        let x = this.state.backdrop 
+        // let x = this.state.backdrop 
       
         return (
             <Wrapper>

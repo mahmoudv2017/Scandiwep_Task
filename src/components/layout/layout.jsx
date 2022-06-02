@@ -1,9 +1,11 @@
-import { Component } from 'react';
-
+import { Component  } from 'react';
+import { Route , Routes , BrowserRouter } from 'react-router-dom'
 import Wrapper from '../hoc/wrapper';
 import Nav from '../nav/nav';
 import axios from '../../Axios'
 import PLP from '../pages/containers/PLP/PLP';
+import PDP from '../pages/containers/PDP/PDP';
+import CartPage from '../pages/containers/CartPage/CartPage';
 
 
 class Layout extends Component{
@@ -23,14 +25,16 @@ class Layout extends Component{
 
 
   
-  
-  componentDidMount (){
-      axios.get('http://localhost:4000/graphql?query={currencies{symbol , label}}')
-      .then(res => {
-        this.setState({currencies : res.data.data.currencies})
-       // console.log(this.state)
-      })
-    }
+componentDidMount(){
+  axios.get("/graphql?query={categories{name,products{id,name,inStock,description,gallery,category,,prices{amount,currency{symbol}}}}}")
+  .then(res => {
+     
+      this.setState({products : res.data.data.categories[0].products})
+
+    
+  })
+}
+ 
 
 
     ProductAdder = (id) => {
@@ -39,9 +43,10 @@ class Layout extends Component{
 
         axios.get("/graphql?query={product(id:"+jk+"){id,name,gallery,description,category,prices{amount,currency{symbol}},brand,attributes{id,name,type}}}")
         .then(res => {
+ 
             res.data.data.product.count = 1
             arr.push(res.data.data.product)
-            this.setState({cart : arr , sss : 4})
+            this.setState({cart : arr})
         })
     }
 
@@ -53,30 +58,52 @@ class Layout extends Component{
     
     render(){
 
-      console.log(this.state.currency)
 
-      let sss = this.state.currency
+
+
         return(
 
         
 
             <Wrapper>
-                 {this.state.currencies ? <Nav 
+
+          
+                 <Nav 
                  currencies={this.state.currencies} 
                  backdrop={this.state.backdrop} 
                  currency={this.state.currency} 
                  cart={this.state.cart}
                  curency_changer={this.curency_changer}
                  
-                 /> : false }
+                 />
+
+                 <BrowserRouter>
                  
-                 <PLP 
-                  products={this.state.products} 
-                  currency={sss} 
-                  currency_selector={this.state.currency_selector}
-                  cart={this.state.cart} 
-                  ProductAdder={this.ProductAdder}
-                  />
+                  <Routes>
+                      <Route path='/' element={
+                            <PLP 
+                            products={this.state.products} 
+                            currency={this.state.currency} 
+                            currency_selector={this.state.currency_selector}
+                            cart={this.state.cart} 
+                            ProductAdder={this.ProductAdder}
+                          />
+                      } />
+                      
+     
+
+                      <Route path=':id' element={
+                        <PDP  products={this.state.products} currency={this.state.currency}  />
+                      } />
+
+                      <Route path='/cart/:id' element={
+                        <CartPage />
+                      } />
+         
+                  </Routes>
+                 </BrowserRouter>
+                 
+                 
                  
            
                

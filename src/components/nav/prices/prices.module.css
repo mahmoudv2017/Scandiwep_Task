@@ -1,5 +1,5 @@
 .prices{
-    position: relative;
+    position: absolute;
     display: flex;
     flex-direction: column;
     padding-left: 0;
@@ -9,24 +9,34 @@
     max-width: 5%;
     z-index: 1000;
     left: 91%;
+    top: 1rem;
     justify-content: center;
     align-items: center;
+    visibility: visible;
+    transition: 300ms all;
+    
+}
+
+.hidden{
+    visibility: hidden;
 }
 
 .prices li{
-    background-color: rgb(41, 72, 209);
+    background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
     align-items: center;
     border: 2px solid transparent;
     width: 100%;
     height: 100%;
+    user-select: none;
     padding: 20px;
-    transition: 1s all;
+    transition: 300ms all;
 }
 
 .prices li:hover{
     cursor: pointer;
     border-color: greenyellow;
+    background-color: grey;
     
 }

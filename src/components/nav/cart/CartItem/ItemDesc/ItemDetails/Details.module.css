@@ -1,0 +1,51 @@
+.ul_padder{
+    display: flex;
+    padding-left: 1rem;
+    gap: .6rem;
+}
+
+
+
+.pad_left{
+    padding-left: .5rem;
+}
+
+.pad_left > p:first-child{
+    margin: 0;
+}
+
+.sizer li{
+    border: 2px solid black;
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 160%;
+    width: 1.5rem;
+    text-align: center;
+}
+
+.selected{
+    background-color: black;
+    color: white;
+}
+
+.color_siezer{
+    gap: .3rem;
+    margin: 0;
+}
+.color_siezer input{
+    width: 36px;
+    height: 36px;
+    border: none;
+    background-color: transparent;
+
+}
+
+.pad_left p{
+    width: 80%;
+}
+
+.price{
+    font-weight: bolder;
+}

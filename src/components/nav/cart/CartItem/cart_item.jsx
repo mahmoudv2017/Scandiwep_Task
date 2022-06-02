@@ -15,16 +15,16 @@ class CartItem extends Component {
     
       incrementer = (index) => {
         let props = this.state
-        let number = props.shirt_arr[index].number_of_items
-        props.shirt_arr[index].number_of_items = ++number
+        let number = props.shirt_arr[index].count
+        props.shirt_arr[index].count = ++number
         this.setState({...props})
     }
 
     decremnter = (index) => {
 
         let props = this.state
-        let number = props.shirt_arr[index].number_of_items
-        props.shirt_arr[index].number_of_items = --number
+        let number = props.shirt_arr[index].count
+        props.shirt_arr[index].count = --number
         this.setState({...props})
     }
     
@@ -43,7 +43,7 @@ class CartItem extends Component {
             arr.map( (item,index) => {
             
                 return(
-                    <ItemDesc item={item} key={index} index={index} incrementer={this.incrementer} decremnter={this.decremnter} />
+                    <ItemDesc item={item} selected_currency={this.props.selected_currency} some_key={index} key={index} index={index} incrementer={this.incrementer} decremnter={this.decremnter} />
                 )
                 
             } )

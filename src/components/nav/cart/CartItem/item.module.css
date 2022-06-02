@@ -1,9 +1,0 @@
-
-.container{
-    display: flex;
-}
-
-.bigger_container{
-    display: flex;
-    flex-direction: row;
-}

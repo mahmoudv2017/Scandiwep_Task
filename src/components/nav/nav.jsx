@@ -1,11 +1,12 @@
 import {Component} from 'react';
 import styles from './nav.module.css'
 import Logo from './logo/logo'
-import Cartsvg from './cart_svg/cart';
 import Cart from './cart/cart'
 import Prices from './prices/prices';
 import Backdrop from '../backdrop/backdrop';
-import Wrapper from '../hoc/wrapper'
+import Wrapper from '../hoc/wrapper';
+import axios from '../../Axios';
+import CartButton from './Cart_button/Cart_button';
 
 
 class Nav extends Component {
@@ -13,11 +14,18 @@ class Nav extends Component {
     constructor(props){
         super(props)
 
-        this.state = {...props}
+        this.state = {...props , currencies : null}
     }
 
   
 
+    componentDidMount (){
+        axios.get('/graphql?query={currencies{symbol , label}}')
+        .then(res => {
+          this.setState({currencies : res.data.data.currencies})
+         // console.log(this.state)
+        })
+      }
     backdrop_toggler = ( ) => {
 
         let backdrop_state = this.state.backdrop
@@ -38,7 +46,7 @@ class Nav extends Component {
     }
  
     render() { 
-        console.log({nav:this.state})
+      
         return (
 
             <Wrapper>
@@ -62,16 +70,19 @@ class Nav extends Component {
 
                     <ul className={styles.right_list}>
                         <li onClick={this.backdrop_toggler}  > $   </li> 
-                        <li onClick={this.cart_toggler} className={styles.cart}> < Cartsvg /></li> 
+                        <CartButton cart_toggler={this.cart_toggler} count={this.state.cart.length}/>
+                        {/* <li variant="danger" ref={target}  onClick={this.cart_toggler} className={styles.cart}> < Cartsvg /></li>  */}
                     </ul>
+
+
 
                     
                 </nav>
 
                 {/* further optimizations needed , put the backdrop inside the two elements */}
-                { this.state.cart_toggler ? <Cart currencies={this.state.currencies} cart={this.state.cart} /> : null }  
+                { this.state.cart_toggler ? <Cart selected_currency={this.props.currency} currencies={this.state.currencies} cart={this.state.cart} /> : null }  
                 { this.state.backdrop ? <Backdrop enabler={this.backdrop_closer} backdrop={true}/>  : null } 
-                { this.state.prices ? <Prices currncy_changer={this.state.curency_changer} currencies={this.state.currencies} /> : null }  
+                {this.state.currencies ? <Prices prices={this.state.prices} currncy_changer={this.state.curency_changer} currencies={this.state.currencies} /> : false} 
             </Wrapper>
           
         );

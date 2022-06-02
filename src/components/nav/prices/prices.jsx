@@ -13,9 +13,11 @@ class Prices extends Component {
 
         
         let prices = this.state.currencies
+        let styler = this.props.prices ? [styles.prices ]  : styles.hidden
+        
 
         return (
-            <ul className={styles.prices}>
+            <ul className={styler}>
 
                 {prices.map( (currency,index) => {
                     return <li onClick={() => this.state.currncy_changer(index)} key={index}>{currency.symbol}   {currency.label}</li>
