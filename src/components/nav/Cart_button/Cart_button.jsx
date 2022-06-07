@@ -17,6 +17,7 @@ class Cart_Button extends Component {
         return (
             <Wrapper>
                 <li  className={x} onClick={this.props.cart_toggler} > < Cartsvg /></li>
+               {this.props.count > 0 ? <div className={style.counter}>{this.props.count}</div> : false} 
                 <p className={arr.join(' ')}>No Items Exist Yet</p>
             </Wrapper>
 

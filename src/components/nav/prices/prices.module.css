@@ -19,6 +19,7 @@
 
 .hidden{
     visibility: hidden;
+    position: absolute;
 }
 
 .prices li{

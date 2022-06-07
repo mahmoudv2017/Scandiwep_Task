@@ -1,7 +1,9 @@
 .cart{
-    background-color: blueviolet;
+    background-color: white;
     position: absolute;
-    top: 8%;
+    width: min-content;
+    padding-inline: .5rem;
+    top: 100%;
     right: 2%;
     display: flex;
     flex-direction: column;
@@ -9,6 +11,10 @@
 
 }
 
+.alt_header{
+    text-align: center;
+    width: 15rem;
+}
 .top_div{
     color: black;
     background-color: #fff;
@@ -51,16 +57,44 @@
 .bottom_div{
     display: flex;
     justify-content: center;
+    height: 5rem;
     align-items: center;
+    background-color: white;
+    margin-bottom: 3rem;
+    gap: 1rem;
 }
 
+.bottom_div button{
+    border: none;
+    font-family: 'Raleway';
+    
+    font-style: normal;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+    width: 10rem;
+    text-transform: uppercase;
+    height: 4rem;
+}
+
+.bottom_div button:nth-child(1){
+    border: 2px solid #1D1F22;
+    background-color: #fff;
+}
+
+.bottom_div button:nth-child(2){
+    background-color: #5ECE7B;
+    width: 11rem; 
+    color: white;
+}
 .total{
     display: flex;
     justify-content: space-between;
-    padding: 0px .5rem;
+    padding: 1rem .5rem;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: bolder;
-    font-size: 16px;
+    font-size: 1.4rem;
     line-height: 18px;
 }

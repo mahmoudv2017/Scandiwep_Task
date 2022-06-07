@@ -6,12 +6,18 @@ ul{
 
 nav{
     display: flex;
-    position: relative;
+    position: fixed;
     inset: 0;
     background-color: #fff;
     height: 80px;
     align-items: center;
     z-index: 10000;
+   
+}
+
+nav::after{
+    content: '';
+    height: 3rem;
 }
 
 .logo{
@@ -27,9 +33,8 @@ nav{
 
     text-transform: uppercase;
     column-gap: 2rem;
-    font-family: 'Raleway';
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 16px;
     line-height: 120%;
     padding-left: 0;
@@ -42,16 +47,35 @@ nav{
     height: 30px;
     padding: 0px 2px;
     transition: .5s all;
+    
     border-bottom: 2px solid transparent;
 
 }
+.left_list li a{
+    text-decoration: none;
+    color: black;
+    transition: .5s all;
 
-.left_list li:hover{
+}
+
+ .left_list li:hover > a{
+
+    color:  #5ece7b;
+
+} 
+
+
+.left_list li:hover {
     color: #5ece7b;
     border-bottom: 2px solid #5ece7b;
     cursor: pointer;
     
 }
+
+
+
+
+
 
 .right_list{
 

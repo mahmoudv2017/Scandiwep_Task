@@ -4,9 +4,10 @@ import Logo from './logo/logo'
 import Cart from './cart/cart'
 import Prices from './prices/prices';
 import Backdrop from '../backdrop/backdrop';
-import Wrapper from '../hoc/wrapper';
 import axios from '../../Axios';
 import CartButton from './Cart_button/Cart_button';
+import { Link  } from 'react-router-dom';
+import ErrorBoundary from '../hoc/ErrorBoundary';
 
 
 class Nav extends Component {
@@ -17,6 +18,10 @@ class Nav extends Component {
         this.state = {...props , currencies : null}
     }
 
+   
+
+
+
   
 
     componentDidMount (){
@@ -25,6 +30,7 @@ class Nav extends Component {
           this.setState({currencies : res.data.data.currencies})
          // console.log(this.state)
         })
+        
       }
     backdrop_toggler = ( ) => {
 
@@ -44,49 +50,71 @@ class Nav extends Component {
 
         this.setState({backdrop:false , prices : false , cart_toggler : false })
     }
- 
+    
+    
     render() { 
-      
+        if(this.state.currencies){       console.log(this.state.currencies[this.props.currency])}
+ 
         return (
 
-            <Wrapper>
+            <ErrorBoundary>
                 
             
         
                 <nav>
                 
                     <ul className={styles.left_list}>
-                        <li>Women</li>
-                        <li>Men</li>
-                        <li>Kids</li>
+                        <li onClick={() => {this.props.categories_changer(0)}}>
+                        <Link to='/'>
+                            Women
+                        </Link>
+                        </li>
+                        <li onClick={() => {this.props.categories_changer(1)}}>
+                        <Link to='/'>
+                        Men
+                        </Link></li>
+                        <li onClick={() => this.props.categories_changer(2)}>
+                        <Link to='/'>
+                        Kids
+                        </Link></li>
                     </ul>
-
+                    
                     <div className={styles.logo}>
-
+                    <Link to='/'>
                         <Logo />
-
-
+                    </Link>
+                        
+                        
+                        
                     </div>
 
                     <ul className={styles.right_list}>
-                        <li onClick={this.backdrop_toggler}  > $   </li> 
+                      {this.state.currencies ? <li onClick={this.backdrop_toggler}  >  {this.state.currencies[this.props.currency].symbol}  </li> : false }  
                         <CartButton cart_toggler={this.cart_toggler} count={this.state.cart.length}/>
+                        
                         {/* <li variant="danger" ref={target}  onClick={this.cart_toggler} className={styles.cart}> < Cartsvg /></li>  */}
                     </ul>
 
 
+                    {this.state.currencies ? <Prices prices={this.state.prices} currncy_changer={this.state.curency_changer} currencies={this.state.currencies} /> : false} 
 
-                    
+                    { this.state.cart_toggler ? <Cart 
+                    selected_currency={this.props.currency} 
+                    currencies={this.props.currencies} 
+                    cart={this.props.cart} 
+                    incrementer={this.props.incrementer}
+                    decremnter={this.props.decremnter}
+                    />
+                    : null }
                 </nav>
 
                 {/* further optimizations needed , put the backdrop inside the two elements */}
-                { this.state.cart_toggler ? <Cart selected_currency={this.props.currency} currencies={this.state.currencies} cart={this.state.cart} /> : null }  
+                 
                 { this.state.backdrop ? <Backdrop enabler={this.backdrop_closer} backdrop={true}/>  : null } 
-                {this.state.currencies ? <Prices prices={this.state.prices} currncy_changer={this.state.curency_changer} currencies={this.state.currencies} /> : false} 
-            </Wrapper>
+            </ErrorBoundary>
           
         );
     }
 }
  
-export default Nav;
+export default Nav ;

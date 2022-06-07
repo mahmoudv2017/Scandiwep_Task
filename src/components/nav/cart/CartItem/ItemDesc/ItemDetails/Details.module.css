@@ -1,10 +1,20 @@
 .ul_padder{
     display: flex;
-    padding-left: 1rem;
-    gap: .6rem;
+    padding: 0;
+    gap: 0.5rem;
+    width: 13rem;
+    max-width: 100%;
+
 }
 
-
+.title{
+   
+    font-style: normal;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 27px;
+}
 
 .pad_left{
     padding-left: .5rem;
@@ -14,14 +24,39 @@
     margin: 0;
 }
 
+.pad_left hr{
+    display: none;
+}
+
 .sizer li{
     border: 2px solid black;
     font-family: 'Source Sans Pro';
     font-style: normal;
+    text-transform: uppercase;
     font-weight: 400;
     font-size: 19px;
+    cursor: pointer;
     line-height: 160%;
-    width: 1.5rem;
+    width: 5rem;
+    height: 1.8rem;
+    user-select: none;
+    max-width: 100%;
+    text-align: center;
+}
+
+.Not_sizer li{
+    border: 2px solid black;
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 19px;
+    cursor: pointer;
+    line-height: 160%;
+    width: 5rem;
+    height: 2rem;
+    user-select: none;
+    max-width: 100%;
     text-align: center;
 }
 
@@ -44,8 +79,21 @@
 
 .pad_left p{
     width: 80%;
+    /* font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 4px; */
+}
+
+.subheader{
+    width: 100%;
+    font-style: normal;
+font-weight: 700;
+font-size: 93%;
+line-height: 18px;
 }
 
 .price{
     font-weight: bolder;
 }
+

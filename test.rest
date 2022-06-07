@@ -1,1 +1,1 @@
-GET http://localhost:4000/graphql?query={product(id:"huarache-x-stussy-le"){id,name,gallery,description,category,brand,attributes{id,name,type}}}
+GET http://localhost:4000/graphql?query={product(id:"xbox-series-s"){id,name,gallery,description,inStock,category,prices{amount,currency{symbol}},brand,attributes{id,name,type,items{id,value}}}}

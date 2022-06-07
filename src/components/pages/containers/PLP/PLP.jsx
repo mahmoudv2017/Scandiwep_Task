@@ -12,7 +12,6 @@ class PLP extends Component {
 
     render() { 
         let products = this.props.products
-        console.log(products)
         let x = products.map( (product , index) => {
             return(
 
