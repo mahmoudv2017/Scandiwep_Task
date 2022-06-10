@@ -92,6 +92,10 @@ nav::after{
     
 }
 
+.right_list li{
+    cursor: pointer;
+}
+
 .right_list li:first-child{
     width: 12px;
     height: 29px;

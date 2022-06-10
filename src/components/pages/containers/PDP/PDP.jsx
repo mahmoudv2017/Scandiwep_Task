@@ -11,17 +11,21 @@ class PDP extends Component {
         selected_product : null
     }
 
+    orderPrep = (e , x , type = 'swatch' ) => {
+        x = '.'+x
+        document.querySelectorAll(x+' li').forEach(list => {
+            list.classList.remove(style.selected , style.color_selected)
+        })
+        type === 'swatch' ? e.target.classList.add(style.color_selected): e.target.classList.add(style.selected)
+    }
+
 
     componentDidMount = (id) => {
 
         const stringer = window.location.pathname
         let jsoner = '{"' + stringer.replace('/','').replace(/=/g , '":"').replace( / /g ,',')+ '"}'
         let jk = "\"" +JSON.parse(jsoner).id+ "\""
-        // let selected_product = this.props.products.filter(item => {
-        //     return item.id === JSON.parse(jsoner).id
-        // })[0]
-
-        // this.setState({selected_product : selected_product})
+     
         axios.get("/graphql?query={product(id:"+jk+"){id,name,gallery,description,inStock,category,prices{amount,currency{symbol}},brand,attributes{id,name,type,items{id,value}}}}")
         .then(res => {
             this.setState({selected_product : res.data.data.product})
@@ -80,6 +84,9 @@ class PDP extends Component {
 
 
                         {this.state.selected_product.attributes.map( (el , index) => {
+
+                        let x = this.state.selected_product.id + index
+
                     return(
                             <div key={index} style={{padding : '0' , width: '90%'}}>
                                 <p className={style.subheader}>{el.id}:</p>
@@ -87,10 +94,10 @@ class PDP extends Component {
 
                                 
                                 { el.type === "swatch" ? 
-                                <ul className={[style.ul_padder , style.sizer].join(' ')}>
+                                <ul className={[style.ul_padder , style.sizer , x].join(' ')}>
                                 {
                                     el.items.map( (item , index) => {
-                                        return  <li key={index}  style={{backgroundColor : item.value  , border : 'none'}} ></li>
+                                        return  <li key={index}  onClick={ (e) => this.orderPrep(e , x , el.type)}  style={{backgroundColor : item.value  , border : 'none'}} ></li>
                                         } )
                                 }
                               
@@ -103,10 +110,10 @@ class PDP extends Component {
                              
                                 {el.type !== "swatch" ? 
                                 
-                                    <ul className={[style.ul_padder , style.Not_sizer].join(' ')}>
+                                    <ul className={[style.ul_padder , style.Not_sizer , x].join(' ')}>
                                         {
                                             el.items.map( (item , index) => {
-                                                return  <li key={index}  onClick={ () => this.orderPrep(index)} >{item.value}</li>
+                                                return  <li key={index}  onClick={ (e) => this.orderPrep(e , x , el.type)} >{item.value}</li>
                                                 } )
                                         }
                                         </ul>

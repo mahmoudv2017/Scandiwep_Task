@@ -3,7 +3,10 @@ import CartItem from '../../../nav/cart/CartItem/cart_item';
 import style from './CartPage.module.css'
 
 class CartPage extends Component {
-    state = {  } 
+    
+    prep_order = (products) => {
+        this.props.set_order(products)
+    }
     render() { 
         let totaler = {
             total : 0,
@@ -24,7 +27,7 @@ class CartPage extends Component {
                 <h1 className={style.header}>Cart</h1>
 
                 <div className={style.data2}>
-                    <CartItem  incrementer={this.props.incrementer}  decremnter={this.props.decremnter}  shirt_arr={this.props.cart} selected_currency={this.props.selected_currency} />
+                    <CartItem  incrementer={this.props.incrementer} prep_order={this.prep_order}  decremnter={this.props.decremnter}  shirt_arr={this.props.cart} selected_currency={this.props.selected_currency} />
                 </div>
 
                 <div className={style.total}>
@@ -33,7 +36,7 @@ class CartPage extends Component {
                     <p>Qunatity : <span> {totaler.counter}</span></p>
                     <p>Total : <span> {totaler.symbol}  {Math.round(totaler.total * 10) / 10}</span></p>
                     
-                    <button className={style.orderButton}>Order Now</button>
+                    <button onClick={this.prep_order} className={style.orderButton}>Order Now</button>
                    
                 </div>
             </div>

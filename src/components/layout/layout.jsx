@@ -16,6 +16,7 @@ class Layout extends Component {
     currencies: null,
     prices: false,
     products: [],
+    order:[],
     allProducts: [],
     cart_toggler: false,
     backdrop: false,
@@ -92,6 +93,10 @@ decremnter = (index) => {
     this.setState({ currency: index });
   };
 
+  set_order = (products) => {
+    console.log(products)
+  }
+
   render() {
     return (
       <Wrapper>
@@ -103,6 +108,7 @@ decremnter = (index) => {
             currencies={this.state.currencies}
             backdrop={this.state.backdrop}
             currency={this.state.currency}
+            set_order={this.set_order}
             cart={this.state.cart}
             incrementer={this.incrementer}
             decremnter={this.decremnter}
@@ -119,6 +125,7 @@ decremnter = (index) => {
                   currency={this.state.currency}
                   currency_selector={this.state.currency_selector}
                   cart={this.state.cart}
+                  set_order={this.set_order}
                   ProductAdder={this.ProductAdder}
                 />
               }
@@ -141,11 +148,15 @@ decremnter = (index) => {
                 <CartPage
                 incrementer={this.incrementer}
                 decremnter={this.decremnter}
+                set_order={this.set_order}
                   cart={this.state.cart}
                   selected_currency={this.state.currency}
                 />
               }
             />
+
+
+            <Route element={() => { <h1>Page Not Found</h1> }} />
           </Routes>
         </BrowserRouter>
 

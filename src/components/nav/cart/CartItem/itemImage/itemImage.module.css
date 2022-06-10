@@ -13,6 +13,7 @@
     width: 100%;
     height: 100%;
     display: grid;
+    position: relative;
     grid-template-columns: 24px 90%;
     grid-auto-rows: 100%;
     justify-content: flex-end;
@@ -31,6 +32,16 @@
     flex-direction: column;
     user-select: none;
 }
+.image_container > ul:last-child{
+    display: none;
+    position: absolute;
+}
+
+.image_container ul:last-child li{
+    border: 1.5px solid #FFFFFF;
+transform: matrix(1, 0, 0, -1, 0, 0);
+}
+
 
 .image_container .count li:nth-child(1){
     border: 1px solid black;

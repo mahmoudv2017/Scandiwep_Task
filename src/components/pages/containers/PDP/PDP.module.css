@@ -103,7 +103,7 @@
     width: 32px;
     height: 45px;
     border: 1px solid black;
-    
+    cursor: pointer;
     font-family: 'Source Sans Pro';
     font-style: normal;
     font-weight: 400;
@@ -119,15 +119,38 @@
 }
 
 .selected{
-    color: white;
     background-color: black;
+    color: white;
 }
+
+.color_selected{
+
+    position: relative;
+    /* border: 1px solid rgb(68, 255, 3); */
+}
+
+.color_selected::after{
+
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border: 1px solid rgb(68, 255, 3);
+}
+
+.color_selected::before{
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border: 2px solid rgb(255, 255, 255);
+}
+
 .color_siezer{
     gap: .2rem;
 }
 .color_siezer input[type=color]{
     width: 40px;
     height: 40px;
+    cursor: pointer;
     border: none;
 }
 

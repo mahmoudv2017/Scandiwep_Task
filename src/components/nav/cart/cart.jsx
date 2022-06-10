@@ -33,7 +33,7 @@ class Cart extends Component {
 
 
             {this.props.cart.length > 0 ? 
-                <div>
+                <div style={{height : 'inherit'}}>
                     <div className={style.top_div}>
                         <p className={style.pad_left} >My Bag<span>, {this.props.cart.length} items</span></p>
 
@@ -59,7 +59,7 @@ class Cart extends Component {
                             <button>View Bag</button>
                         </Link>
                         
-                        <button>Check OUT</button>
+                        <button onClick={() => this.props.set_order(this.props.cart)} >Check OUT</button>
                     </div>
                 </div>
              :

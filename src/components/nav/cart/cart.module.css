@@ -1,14 +1,29 @@
 .cart{
     background-color: white;
     position: absolute;
-    width: min-content;
+    width: 25%;
     padding-inline: .5rem;
     top: 100%;
+    /* animation: cart_animator .5s ease-in-out forwards; */
     right: 2%;
     display: flex;
     flex-direction: column;
-    z-index: 10000;
+    z-index: 1000;
 
+}
+
+@keyframes cart_animator {
+
+    from{
+        height: 0;
+        opacity: 0;
+    }
+
+    to{
+        height: auto;
+        opacity: 1;
+    }
+    
 }
 
 .alt_header{
@@ -18,7 +33,7 @@
 .top_div{
     color: black;
     background-color: #fff;
-    width: 25rem;
+    width: 100%;
     overflow-y: scroll;
     height: 100%;
     max-height: 42rem;
@@ -60,20 +75,19 @@
     height: 5rem;
     align-items: center;
     background-color: white;
-    margin-bottom: 3rem;
-    gap: 1rem;
+    margin-bottom: 2rem;
+    gap: 2rem;
 }
 
 .bottom_div button{
     border: none;
-    font-family: 'Raleway';
-    
+    /* font-family: 'Raleway'; */
     font-style: normal;
     cursor: pointer;
     font-weight: 600;
     font-size: 20px;
     line-height: 120%;
-    width: 10rem;
+    width: 13rem;
     text-transform: uppercase;
     height: 4rem;
 }
@@ -85,7 +99,7 @@
 
 .bottom_div button:nth-child(2){
     background-color: #5ECE7B;
-    width: 11rem; 
+    width: 14rem; 
     color: white;
 }
 .total{

@@ -29,7 +29,7 @@
 }
 
 .sizer li{
-    border: 2px solid black;
+    /* border: 2px solid black; */
     font-family: 'Source Sans Pro';
     font-style: normal;
     text-transform: uppercase;
@@ -37,8 +37,8 @@
     font-size: 19px;
     cursor: pointer;
     line-height: 160%;
-    width: 5rem;
-    height: 1.8rem;
+    width: 32px;
+    height: 32px;
     user-select: none;
     max-width: 100%;
     text-align: center;
@@ -60,10 +60,40 @@
     text-align: center;
 }
 
+.pad_left ul li p{
+    background-color: rgb(68, 255, 3);
+    width: 100%;
+    margin: 0;
+    height: 100%;
+}
+
+
 .selected{
     background-color: black;
     color: white;
 }
+
+.color_selected{
+
+    position: relative;
+    /* border: 1px solid rgb(68, 255, 3); */
+}
+
+.color_selected::after{
+
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border: 1px solid rgb(68, 255, 3);
+}
+
+.color_selected::before{
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border: 2px solid rgb(255, 255, 255);
+}
+
 
 .color_siezer{
     gap: .3rem;

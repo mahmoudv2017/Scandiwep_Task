@@ -48,7 +48,7 @@
     margin: 0;
     padding: 0;
     height: 2px;
-    width: 95rem;
+    width: 176%;
     left: -190%;
     right: 13%;
     position: relative;
@@ -127,6 +127,26 @@ line-height: 24px;
 .Cart_container .bigger_container .pad_left{
     padding-left: .5rem;
 }
+
+.Cart_container div:nth-child(2) > ul:last-child{
+    display: flex;
+    position: absolute;
+    gap: 1rem;
+    right: 31%;
+    bottom: 14%;
+}
+
+.Cart_container div:nth-child(2) > ul:last-child li{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    border: none;
+    justify-content: center;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.73);
+}
+
 
 .total{
     padding-left: 7.5rem;

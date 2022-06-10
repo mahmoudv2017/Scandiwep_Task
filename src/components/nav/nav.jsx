@@ -100,7 +100,8 @@ class Nav extends Component {
 
                     { this.state.cart_toggler ? <Cart 
                     selected_currency={this.props.currency} 
-                    currencies={this.props.currencies} 
+                    currencies={this.props.currencies}
+                    set_order={this.props.set_order} 
                     cart={this.props.cart} 
                     incrementer={this.props.incrementer}
                     decremnter={this.props.decremnter}
@@ -110,7 +111,7 @@ class Nav extends Component {
 
                 {/* further optimizations needed , put the backdrop inside the two elements */}
                  
-                { this.state.backdrop ? <Backdrop enabler={this.backdrop_closer} backdrop={true}/>  : null } 
+                 <Backdrop enabler={this.backdrop_closer} backdrop={this.state.backdrop}/>
             </ErrorBoundary>
           
         );

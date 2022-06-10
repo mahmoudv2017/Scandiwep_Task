@@ -3,20 +3,15 @@ import style from './backdrop.module.css'
 import Wrapper from '../hoc/wrapper';
 
 class Backdrop extends Component {
-    constructor(props){
-        super(props)
-
-        this.state={...props}
-    }
-
+    
     
     render() { 
 
-        // let x = this.state.backdrop 
+        this.props.backdrop ? document.querySelector('body').style.overflow = 'hidden' : document.querySelector('body').style.overflow = 'auto'
       
         return (
             <Wrapper>
-                <div  onClick={this.state.enabler} className={style.backdrop} ></div>
+              {this.props.backdrop ? <div  onClick={this.props.enabler} className={style.backdrop} ></div> : false}  
             </Wrapper>
             
            

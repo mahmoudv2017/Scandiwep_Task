@@ -15,7 +15,7 @@ class ItemDesc extends React.Component {
             <div className={style.bigger_container} key={this.props.some_key}>
                 <div className={style.container}>
 
-                    <Details item={this.props.item} selected_currency={this.props.selected_currency} />
+                    <Details item={this.props.item} prep_order={this.props.prep_order} selected_currency={this.props.selected_currency} />
 
                     {/* <ul className={style.count}>
                         <li onClick={ () => this.props.incrementer(this.props.index) } >+</li>
