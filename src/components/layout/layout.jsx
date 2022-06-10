@@ -9,14 +9,15 @@ import CartPage from "../pages/containers/CartPage/CartPage";
 
 class Layout extends Component {
   state = {
-    shirts: 5,
+
     currency: 2,
     currency_selector: ["$", "£", "A$", "¥", "₽"],
     category_selector: 0,
     currencies: null,
     prices: false,
     products: [],
-    order:[],
+    selectedAttr:[],
+
     allProducts: [],
     cart_toggler: false,
     backdrop: false,
@@ -66,35 +67,62 @@ decremnter = (index) => {
     this.setState({ products: this.state.allProducts[index].products });
   };
 
-  ProductAdder = (id) => {
-    let arr = this.state.cart;
-    let jk = '"' + id + '"';
-    if (
-      this.state.cart.find((item) => {
-        return item.id === id;
-      })
-    ) {
-      return;
-    }
-    axios
-      .get(
-        "/graphql?query={product(id:" +
-          jk +
-          "){id,name,gallery,description,category,prices{amount,currency{symbol}},brand,attributes{id,name,type,items{id,value}}}}"
-      )
-      .then((res) => {
-        res.data.data.product.count = 1;
-        arr.push(res.data.data.product);
-        this.setState({ cart: arr });
-      });
+  ProductAdder = (product ) => {
+
+    let arr = this.state.cart
+    let selected = arr.findIndex( procut => procut.id === product.id )
+      if(selected !== -1){
+        
+       // arr[selected].selectedAttr = product.selectedAttr
+        product.count = 1
+        arr[selected] = product
+        this.setState({cart : arr})
+        return
+      
+      
+      }
+
+    
+
+
+    // let chosen_one = this.state.products.filter(
+    //   item => {
+    //     return item.id === id
+    //   }
+    // )[0]
+
+ 
+
+      if(product.selectedAttr.length === 0){
+        let attribues = []
+        product.selectedAttr.forEach( attr => {
+          let x = {
+            id : attr.id , value : 0
+          }
+          attribues.push(x)
+        } )
+
+        product.selectedAttr = attribues
+      }
+    
+    product.count = 1
+   
+
+    arr.push(product)
+   //   console.log(arr)
+    this.setState({cart : arr})
+
   };
 
+  set_attr = (attr) => {
+    this.setState({selectedAttr : attr})
+  }
   curency_changer = (index) => {
     this.setState({ currency: index });
   };
 
   set_order = (products) => {
-    console.log(products)
+    this.setState({cart : []})
   }
 
   render() {
@@ -107,6 +135,7 @@ decremnter = (index) => {
             categories_changer={this.categories_changer}
             currencies={this.state.currencies}
             backdrop={this.state.backdrop}
+            allcategs={this.state.allProducts}
             currency={this.state.currency}
             set_order={this.set_order}
             cart={this.state.cart}

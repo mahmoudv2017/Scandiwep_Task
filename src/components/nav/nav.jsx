@@ -9,7 +9,6 @@ import CartButton from './Cart_button/Cart_button';
 import { Link  } from 'react-router-dom';
 import ErrorBoundary from '../hoc/ErrorBoundary';
 
-
 class Nav extends Component {
     
     constructor(props){
@@ -32,18 +31,24 @@ class Nav extends Component {
         })
         
       }
-    backdrop_toggler = ( ) => {
+    prices_toggler = ( ) => {
 
         let backdrop_state = this.state.backdrop
         let prev_prices = this.state.prices
-        this.setState({backdrop:!backdrop_state , prices:!prev_prices })
+        if(this.state.cart_toggler === true){
+            backdrop_state = false
+        }
+        this.setState({backdrop:!backdrop_state , prices:!prev_prices , cart_toggler : false })
     }
 
     cart_toggler = ( ) => {
-
+        
         let backdrop_state = this.state.backdrop
         let prev_prices = this.state.cart_toggler
-        this.setState({cart_toggler:!prev_prices , backdrop: !backdrop_state})
+        if(this.state.prices === true){
+            backdrop_state = false
+        }
+        this.setState({cart_toggler:!prev_prices , backdrop: !backdrop_state , prices:false })
     }
 
     backdrop_closer = ( ) => {
@@ -53,7 +58,6 @@ class Nav extends Component {
     
     
     render() { 
-        if(this.state.currencies){       console.log(this.state.currencies[this.props.currency])}
  
         return (
 
@@ -64,19 +68,17 @@ class Nav extends Component {
                 <nav>
                 
                     <ul className={styles.left_list}>
-                        <li onClick={() => {this.props.categories_changer(0)}}>
-                        <Link to='/'>
-                            Women
-                        </Link>
-                        </li>
-                        <li onClick={() => {this.props.categories_changer(1)}}>
-                        <Link to='/'>
-                        Men
-                        </Link></li>
-                        <li onClick={() => this.props.categories_changer(2)}>
-                        <Link to='/'>
-                        Kids
-                        </Link></li>
+                        {this.props.allcategs.map((cat,index) => {
+                            return(
+                                <li key={index} onClick={() => {this.props.categories_changer(index)}}>
+                                <Link to='/'>
+                                    {cat.name}
+                                </Link>
+                            </li>
+                            )
+                           
+                        })}
+                     
                     </ul>
                     
                     <div className={styles.logo}>
@@ -89,10 +91,10 @@ class Nav extends Component {
                     </div>
 
                     <ul className={styles.right_list}>
-                      {this.state.currencies ? <li onClick={this.backdrop_toggler}  >  {this.state.currencies[this.props.currency].symbol}  </li> : false }  
-                        <CartButton cart_toggler={this.cart_toggler} count={this.state.cart.length}/>
+                      {this.state.currencies ? <li onClick={this.prices_toggler}  >  {this.state.currencies[this.props.currency].symbol}  </li> : false }  
+                        <CartButton cart_toggler={this.cart_toggler} count={this.props.cart.length}/>
                         
-                        {/* <li variant="danger" ref={target}  onClick={this.cart_toggler} className={styles.cart}> < Cartsvg /></li>  */}
+              
                     </ul>
 
 
@@ -102,6 +104,7 @@ class Nav extends Component {
                     selected_currency={this.props.currency} 
                     currencies={this.props.currencies}
                     set_order={this.props.set_order} 
+                    cart_toggler={this.cart_toggler}
                     cart={this.props.cart} 
                     incrementer={this.props.incrementer}
                     decremnter={this.props.decremnter}

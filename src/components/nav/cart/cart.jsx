@@ -19,8 +19,6 @@ class Cart extends Component {
   
        this.props.cart.forEach(element => {
            totaler.symbol = element.prices[this.props.selected_currency].currency.symbol
-            
-       
            totaler.total += (element.prices[this.props.selected_currency].amount * element.count)
            totaler.total =  Math.round(totaler.total * 10) / 10
        
@@ -56,7 +54,7 @@ class Cart extends Component {
 
                     <div className={style.bottom_div}>
                         <Link to='/cart'>
-                            <button>View Bag</button>
+                            <button onClick={this.props.cart_toggler}>View Bag</button>
                         </Link>
                         
                         <button onClick={() => this.props.set_order(this.props.cart)} >Check OUT</button>

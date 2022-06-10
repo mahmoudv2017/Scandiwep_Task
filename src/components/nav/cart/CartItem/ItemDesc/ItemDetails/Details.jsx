@@ -4,38 +4,31 @@ import style from './Details.module.css'
 
 class Details extends Component {
 
-    orderPrep = (e , x , type = 'swatch' ) => {
+    orderPrep = (e , x , type = 'Color' ) => {
         x = '.'+x
-        let real_type ,content 
+      
         document.querySelectorAll(x+' li').forEach(list => {
             list.classList.remove(style.selected , style.color_selected)
         })
-        if(type === 'swatch'){
+        if(type === 'Color'){
             e.target.classList.add(style.color_selected)
-            real_type = 'Color'
-            content = e.target.style.backgroundColor
+     
+            // let content = e.target.style.backgroundColor
         }
         else{
-            content = e.target.outerText
-            real_type = 'Size'
+            // content = e.target.outerText
+  
             e.target.classList.add(style.selected)
         }
   
- 
-        
-
-         this.props.item.OrderedAttrebiutes = [
-            {
-                id : real_type,
-                value : content
-            }
-         ]
-         this.props.prep_order(this.props.item)
     }
     
     render() { 
 
         let current_price = Math.round( (this.props.item.prices[this.props.selected_currency].amount * this.props.item.count) *10 )/10 
+        console.log(current_price)
+        let selected_attr = this.props.item.selectedAttr
+      
         return (
             
             <div className={style.pad_left}>
@@ -51,12 +44,16 @@ class Details extends Component {
 
 
                                 
-                                { el.type === "swatch" ? 
+                                { el.id === "Color" ? 
+                                
                                 <ul className={[style.ul_padder , style.sizer , x].join(' ')}>
                                     {   el.items.map( (item , index) => {
+                                         let selected = selected_attr.filter( attr => attr.id === el.id )[0]
+                                         let classes = selected.value === index ? style.color_selected : null
+                                        
                                 return (
-                               
-                                    <li key={index} onClick={ (e) => this.orderPrep(e , x , el.type)} style={{backgroundColor : item.value  }}  ></li>
+                                    
+                                    <li key={index} className={classes} onClick={ (e) => this.orderPrep(e , x , el.id)} style={{backgroundColor : item.value  }}  ></li>
                                
                                 )  
                                 } ) }
@@ -69,11 +66,15 @@ class Details extends Component {
                              
 
                                 
-                                {el.type !== "swatch" ? 
+                                {el.id !== "Color" ? 
                                 <ul className={[style.ul_padder , style.Not_sizer , x].join(' ')}>
                                     {
                                     el.items.map( (item , index) => {
-                                        return  <li key={index}  onClick={ (e) => this.orderPrep(e , x , el.type)} >{item.value}</li>
+
+                                        let selected = selected_attr.filter( attr => attr.id === el.id )[0]
+                                        
+                                        let classes = selected.value === index ? style.selected : null
+                                        return  <li key={index} className={classes}  onClick={ (e) => this.orderPrep(e , x , el.id)} >{item.value}</li>
                                         } )
                                     } 
                                     </ul> : false}

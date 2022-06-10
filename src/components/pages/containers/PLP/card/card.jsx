@@ -11,6 +11,15 @@ class Card extends Component {
     render() { 
 
         let styles_arr = [style.card_image]
+          let attribues = []
+          this.props.product.attributes.forEach( attr => {
+          let x = {
+            id : attr.id , value : 0
+          }
+          attribues.push(x)
+        } )
+
+        this.props.product.selectedAttr = attribues
 
         return (
 
@@ -26,7 +35,7 @@ class Card extends Component {
                 <p>{this.props.product.name}</p>
                 
                 {this.props.product.inStock ?  
-                    <div className={style.cart_adder} onClick={ () => this.props.ProductAdder(this.props.product.id)}>
+                    <div className={style.cart_adder} onClick={ () => this.props.ProductAdder(this.props.product)}>
                         <CartAdderSvg />
                     </div> : false}
                
