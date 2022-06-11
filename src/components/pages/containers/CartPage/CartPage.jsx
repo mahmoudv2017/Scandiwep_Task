@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import CartItem from '../../../nav/cart/CartItem/cart_item';
 import style from './CartPage.module.css'
+import style_test from './test.module.css'
+import itemDesc_style from './itemDescTest.module.css';
 import Wrapper from '../../../hoc/wrapper';
 
 class CartPage extends Component {
@@ -36,7 +38,14 @@ class CartPage extends Component {
                 {this.props.cart.length > 0 ?
                 <Wrapper>
                 <div className={style.data2}>
-                    <CartItem  incrementer={this.props.incrementer} prep_order={this.prep_order}  decremnter={this.props.decremnter}  shirt_arr={this.props.cart} selected_currency={this.props.selected_currency} />
+                    <CartItem 
+                    details_style={style_test}  
+                    ItemDesc_style = {itemDesc_style}
+                    incrementer={this.props.incrementer} 
+                    prep_order={this.prep_order}  
+                    decremnter={this.props.decremnter}  
+                    shirt_arr={this.props.cart} 
+                    selected_currency={this.props.selected_currency} />
                 </div>
 
                 <div className={style.total}>

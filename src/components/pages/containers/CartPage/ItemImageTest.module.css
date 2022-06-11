@@ -1,0 +1,9 @@
+.image_container ul:last-child{
+
+    display: flex;
+    position: absolute;
+    gap: 1rem;
+    right: 31%;
+    bottom: 14%;
+    
+}

@@ -52,16 +52,16 @@ class Details extends Component {
       
         return (
             
-            <div className={style.pad_left}>
-                <p  className={style.title} >{this.props.item.name}</p>
+            <div className={this.props.style.pad_left}>
+                <p  className={this.props.style.title} >{this.props.item.name}</p>
 
-                <p className={style.price}>{  this.props.item.prices[this.props.selected_currency].currency.symbol}  {current_price}</p>
+                <p className={this.props.style.price}>{  this.props.item.prices[this.props.selected_currency].currency.symbol}  {current_price}</p>
 
                 {this.props.item.attributes.map( (el , index) => {
                     let x = this.props.item.id + index
                     return(
                             <div key={index} style={{padding : '0' }}>
-                                <p className={style.subheader}>{el.id}:</p>
+                                <p className={this.props.style.subheader}>{el.id}:</p>
 
 
                                 

@@ -2,7 +2,6 @@ import { Component  } from 'react';
 import ItemDesc from './ItemDesc/ItemDesc';
 
 
-
 class CartItem extends Component {
     
    
@@ -30,6 +29,9 @@ class CartItem extends Component {
                         some_key={index} 
                         key={index} 
                         index={index} 
+              
+                        details_style={this.props.details_style}
+                        ItemDesc_style={this.props.ItemDesc_style}
                         productAdder={this.props.productAdder}
                         prep_order={this.props.prep_order}
                         incrementer={this.props.incrementer} 

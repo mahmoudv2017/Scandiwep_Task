@@ -1,0 +1,29 @@
+.title{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.price {
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+
+}
+
+.subheader{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 93%;
+    line-height: 18px;
+}
+
+.pad_left{
+    font-size: 1rem;
+    margin: 2rem 0px;
+    background-color: #fff;
+    grid-template-columns: 70% 26%;
+    gap: 3rem;
+    padding-left: 7.5rem;
+}

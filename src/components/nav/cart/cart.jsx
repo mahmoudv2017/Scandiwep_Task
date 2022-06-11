@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import style from './cart.module.css'
+import details_style from './CartItem/ItemDesc/ItemDetails/Details.module.css'
+import ItemDesc_style from './CartItem/ItemDesc/itemDesc.module.css'
 import scrollBar from '../../pages/containers/PDP/scrollbar/scrollbar.module.css';
 import CartItem from './CartItem/cart_item';
 
@@ -39,7 +41,14 @@ class Cart extends Component {
                     
 
                         <div className={style.data}>
-                            <CartItem productAdder={this.props.productAdder} incrementer={this.props.incrementer} decremnter={this.props.decremnter} shirt_arr={this.props.cart} selected_currency={this.props.selected_currency} />
+                            <CartItem  
+                            productAdder={this.props.productAdder} 
+                            incrementer={this.props.incrementer} 
+                            decremnter={this.props.decremnter} 
+                            details_style={details_style}
+                            ItemDesc_style={ItemDesc_style}
+                            shirt_arr={this.props.cart} 
+                            selected_currency={this.props.selected_currency} />
                         </div>
 
                     

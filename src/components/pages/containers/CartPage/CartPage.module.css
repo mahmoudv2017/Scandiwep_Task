@@ -35,98 +35,7 @@
 
 }
 
-.Cart_container > div div {
-    background-color: #fff;
-    grid-template-columns: 70% 26%;
-    gap: 3rem;
-}
 
-.Cart_container > div div hr{
-    display: block;
-    top: 106%;
-    border: none;
-    margin: 0;
-    padding: 0;
-    height: 2px;
-    width: 176%;
-    left: -190%;
-    right: 13%;
-    position: relative;
-    background-color: #E5E5E5;
-}
-
-
-
-
-.Cart_container > div > div > div > div > P:first-child {
-
-    font-size: 30px;
-
-}
-
-.Cart_container > div > div > div > div > P:nth-child(2) {
-
-    font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 24px;
-
-}
-
-
-
-.Cart_container > div > div > div > div > ul > li{
-    width: 63px;
-    height: 45px;
-    display: flex;
-    text-transform: uppercase;
-    align-items: center;
-    justify-content: center;
-}
-.Cart_container > div > div > div > div > ul:last-child{
-    gap: 0rem;
-}
-.Cart_container > div > div > div > div > ul:last-child > li{
-    width: 2.5rem;
-    height: 45px;
-    display: flex;
-    text-transform: uppercase;
-    align-items: center;
-    justify-content: center;
-}
-
-.Cart_container > div div div > div{
-    font-size: 1rem;
-    margin: 2rem 0px;
-    padding-left: 7.5rem;
-}
-
-.Cart_container > div div div > div hr{
-    display: block;
-    position: absolute;
-    width: 117%;
-    bottom: -75%;
-}
-
-
-
-
-.Cart_container div div div:nth-child(2){
-    grid-template-columns: 24px 90%;
-}
-
-
-
-
-/* .Cart_container .bigger_container .container{
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: 95% 5%;
-} */
-
-.Cart_container .bigger_container .pad_left{
-    padding-left: .5rem;
-}
 
 .Cart_container div:nth-child(2) > ul:last-child{
     display: flex;
@@ -177,7 +86,7 @@ line-height: 24px;
     margin-bottom: 2rem;
     padding: 0;
     height: 2px;
-    width: 100%;
+    width: 98%;
     left: 0%;
     position: relative;
     background-color: #E5E5E5;

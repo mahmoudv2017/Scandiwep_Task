@@ -1,0 +1,24 @@
+.bigger_container{
+    display: grid;
+    grid-auto-flow: column;
+    position: relative;
+    grid-auto-columns: 70% 26%;
+    grid-template-rows: 100%;
+    background-color: #fff;
+    gap: 3rem;
+    height: max-content;
+}
+
+.bigger_container hr{
+    display: block;
+    top: 106%;
+    border: none;
+    margin: 0;
+    padding: 0;
+    height: 2px;
+    width: 124%;
+    left: -136%;
+    right: 13%;
+    position: relative;
+    background-color: #E5E5E5;
+}
