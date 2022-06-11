@@ -16,7 +16,7 @@ class ItemImage extends Component {
         let item = this.props.item
         return (
             <div className={style.image_container}> 
-                <img className={style.image_size} src={item.gallery[this.state.index]} alt={item.gallery[this.state.index]}/>
+                <img className={style.image_size} src={ this.state.index+1 > item.gallery.length ? item.gallery[0] : item.gallery[this.state.index]} alt={item.gallery[0]}/>
 
                 <ul className={style.count}>
                     <li onClick={ () => this.props.incrementer(this.props.index) } >+</li>

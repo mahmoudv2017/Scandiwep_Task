@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import style from './cart.module.css'
+import scrollBar from '../../pages/containers/PDP/scrollbar/scrollbar.module.css';
 import CartItem from './CartItem/cart_item';
 
 
@@ -32,13 +33,13 @@ class Cart extends Component {
 
             {this.props.cart.length > 0 ? 
                 <div style={{height : 'inherit'}}>
-                    <div className={style.top_div}>
+                    <div className={[style.top_div , scrollBar.invisible_scrollbar].join(' ')}>
                         <p className={style.pad_left} >My Bag<span>, {this.props.cart.length} items</span></p>
 
                     
 
                         <div className={style.data}>
-                            <CartItem incrementer={this.props.incrementer} decremnter={this.props.decremnter} shirt_arr={this.props.cart} selected_currency={this.props.selected_currency} />
+                            <CartItem productAdder={this.props.productAdder} incrementer={this.props.incrementer} decremnter={this.props.decremnter} shirt_arr={this.props.cart} selected_currency={this.props.selected_currency} />
                         </div>
 
                     

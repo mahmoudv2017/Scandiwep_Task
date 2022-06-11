@@ -179,41 +179,18 @@
     width: 100%;
 }
 
- .buttonSection div{
+  .buttonSection div{
     height: 17rem;
-    /* width: 90%; */
+
     left: -1%;
     right: -2%;
     position: absolute;
     padding-left: 7.5%;
     padding-right: 0.5rem;
-    overflow-y: scroll;
     overflow-x: hidden;
 } 
  
-.buttonSection div::-webkit-scrollbar{
 
-
-    width: 12px;
-    height: 12px;
-  
-
-} 
-
- .buttonSection div::-webkit-scrollbar-thumb{
-
-    background-color: grey;
-    visibility: hidden;
-  
-
-}    
-
-.buttonSection div:hover::-webkit-scrollbar-thumb{
- 
-    visibility: visible;
-
-
-} 
 
 
 .flex_container .subheader{
@@ -277,6 +254,7 @@
 
         flex-direction: row;
         overflow-x: scroll;
+        overflow-y: hidden;
         width: 100%;
         height: fit-content;
     }

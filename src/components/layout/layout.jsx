@@ -12,12 +12,10 @@ class Layout extends Component {
 
     currency: 2,
     currency_selector: ["$", "£", "A$", "¥", "₽"],
-    category_selector: 0,
-    currencies: null,
+    category_selector: 'all',
     prices: false,
     products: [],
     selectedAttr:[],
-
     allProducts: [],
     cart_toggler: false,
     backdrop: false,
@@ -32,7 +30,7 @@ class Layout extends Component {
       .then((res) => {
         this.setState({
           products:
-            res.data.data.categories[this.state.category_selector].products,
+            res.data.data.categories[0].products,
           allProducts: res.data.data.categories,
         });
       });
@@ -64,7 +62,7 @@ decremnter = (index) => {
 }
 
   categories_changer = (index) => {
-    this.setState({ products: this.state.allProducts[index].products });
+    this.setState({ products: this.state.allProducts[index].products , category_selector : this.state.allProducts[index].name });
   };
 
   ProductAdder = (product ) => {
@@ -73,7 +71,6 @@ decremnter = (index) => {
     let selected = arr.findIndex( procut => procut.id === product.id )
       if(selected !== -1){
         
-       // arr[selected].selectedAttr = product.selectedAttr
         product.count = 1
         arr[selected] = product
         this.setState({cart : arr})
@@ -82,16 +79,6 @@ decremnter = (index) => {
       
       }
 
-    
-
-
-    // let chosen_one = this.state.products.filter(
-    //   item => {
-    //     return item.id === id
-    //   }
-    // )[0]
-
- 
 
       if(product.selectedAttr.length === 0){
         let attribues = []
@@ -109,7 +96,7 @@ decremnter = (index) => {
    
 
     arr.push(product)
-   //   console.log(arr)
+
     this.setState({cart : arr})
 
   };
@@ -133,10 +120,10 @@ decremnter = (index) => {
 
           <Nav
             categories_changer={this.categories_changer}
-            currencies={this.state.currencies}
             backdrop={this.state.backdrop}
             allcategs={this.state.allProducts}
             currency={this.state.currency}
+            ProductAdder={this.ProductAdder}
             set_order={this.set_order}
             cart={this.state.cart}
             incrementer={this.incrementer}
@@ -152,9 +139,9 @@ decremnter = (index) => {
                 <PLP
                   products={this.state.products}
                   currency={this.state.currency}
+                  category_selector={this.state.category_selector}
                   currency_selector={this.state.currency_selector}
                   cart={this.state.cart}
-                  set_order={this.set_order}
                   ProductAdder={this.ProductAdder}
                 />
               }

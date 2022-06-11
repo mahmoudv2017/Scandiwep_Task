@@ -23,7 +23,7 @@ class PLP extends Component {
         return (
             
                 <div className={style.contain}>
-                    <h1 className={style.header}>Category name</h1>
+                    <h1 className={style.header}>{this.props.category_selector}</h1>
 
                     <div className={style.grid}>
                         {x}

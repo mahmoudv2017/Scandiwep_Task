@@ -1,32 +1,53 @@
 import React, { Component } from 'react';
 import style from './Details.module.css'
 
+let selected_attr = []
+
 
 class Details extends Component {
-
-    orderPrep = (e , x , type = 'Color' ) => {
+    state = {
+        refresh : true
+    }
+    
+    orderPrep = (e , x , type = 'Color' , index = 0 ) => {
         x = '.'+x
       
         document.querySelectorAll(x+' li').forEach(list => {
             list.classList.remove(style.selected , style.color_selected)
         })
-        if(type === 'Color'){
-            e.target.classList.add(style.color_selected)
-     
-            // let content = e.target.style.backgroundColor
+        type === 'Color' ? e.target.classList.add(style.color_selected) : e.target.classList.add(style.selected)
+
+        let checker = selected_attr.find(attr => attr.id === type)
+        if (checker) { checker.value = index }
+        else {
+            selected_attr.push({
+                id: type, value: index
+            })
         }
-        else{
-            // content = e.target.outerText
-  
-            e.target.classList.add(style.selected)
-        }
-  
+
+
+
+
+        let product = this.props.item
+        product.selectedAttr.map(attr => {
+
+            selected_attr.forEach(selected => {
+                if (attr.id === selected.id) {
+                    attr.value = selected.value
+                }
+            })
+            return attr
+
+        })
+
+   
+        //this.props.productAdder(product)
+        this.setState({refresh:false})
     }
     
     render() { 
 
         let current_price = Math.round( (this.props.item.prices[this.props.selected_currency].amount * this.props.item.count) *10 )/10 
-        console.log(current_price)
         let selected_attr = this.props.item.selectedAttr
       
         return (
@@ -53,7 +74,7 @@ class Details extends Component {
                                         
                                 return (
                                     
-                                    <li key={index} className={classes} onClick={ (e) => this.orderPrep(e , x , el.id)} style={{backgroundColor : item.value  }}  ></li>
+                                    <li key={index} className={classes} onClick={ (e) => this.orderPrep(e , x , el.id , index)} style={{backgroundColor : item.value  }}  ></li>
                                
                                 )  
                                 } ) }
@@ -74,7 +95,7 @@ class Details extends Component {
                                         let selected = selected_attr.filter( attr => attr.id === el.id )[0]
                                         
                                         let classes = selected.value === index ? style.selected : null
-                                        return  <li key={index} className={classes}  onClick={ (e) => this.orderPrep(e , x , el.id)} >{item.value}</li>
+                                        return  <li key={index} className={classes}  onClick={ (e) => this.orderPrep(e , x , el.id , index)} >{item.value}</li>
                                         } )
                                     } 
                                     </ul> : false}

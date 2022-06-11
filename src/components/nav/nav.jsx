@@ -104,6 +104,7 @@ class Nav extends Component {
                     selected_currency={this.props.currency} 
                     currencies={this.props.currencies}
                     set_order={this.props.set_order} 
+                    productAdder={this.props.productAdder}
                     cart_toggler={this.cart_toggler}
                     cart={this.props.cart} 
                     incrementer={this.props.incrementer}

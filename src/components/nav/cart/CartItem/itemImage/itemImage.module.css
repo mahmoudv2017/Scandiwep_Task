@@ -26,6 +26,7 @@
     display: flex;
     order: 1;
     color: black;
+    
     background-color: #fff;
     justify-content: space-between;
     text-align: center;
@@ -43,10 +44,12 @@ transform: matrix(1, 0, 0, -1, 0, 0);
 }
 
 
-.image_container .count li:nth-child(1){
+.image_container .count li:nth-child(2n+1){
     border: 1px solid black;
+    cursor: pointer;
 
 }
-.image_container .count li:nth-child(3){
+/* .image_container .count li:nth-child(3){
     border: 1px solid black;
-}
+    cursor: pointer;
+} */

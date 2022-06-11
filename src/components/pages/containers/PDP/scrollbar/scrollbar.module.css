@@ -1,0 +1,24 @@
+
+.invisible_scrollbar::-webkit-scrollbar , .invisible_scrollbar div::-webkit-scrollbar{
+
+
+    width: 12px;
+    height: 12px;
+  
+
+} 
+
+ .invisible_scrollbar::-webkit-scrollbar-thumb ,  .invisible_scrollbar div::-webkit-scrollbar-thumb{
+
+    background-color: grey;
+    visibility: hidden;
+  
+
+}   
+
+.invisible_scrollbar:hover::-webkit-scrollbar-thumb ,  .invisible_scrollbar div:hover::-webkit-scrollbar-thumb{
+ 
+    visibility: visible;
+
+
+} 

@@ -30,6 +30,7 @@ class CartItem extends Component {
                         some_key={index} 
                         key={index} 
                         index={index} 
+                        productAdder={this.props.productAdder}
                         prep_order={this.props.prep_order}
                         incrementer={this.props.incrementer} 
                         decremnter={this.props.decremnter} 

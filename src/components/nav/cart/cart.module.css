@@ -39,6 +39,9 @@
     max-height: 42rem;
 }
 
+
+
+
 .data{
     display: flex;
     flex-direction: column;
@@ -70,10 +73,11 @@
 }
 
 .bottom_div{
-    display: flex;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 43%;
     justify-content: center;
     height: 5rem;
-    align-items: center;
     background-color: white;
     margin-bottom: 2rem;
     gap: 2rem;
@@ -87,7 +91,7 @@
     font-weight: 600;
     font-size: 20px;
     line-height: 120%;
-    width: 13rem;
+    width: 100%;
     text-transform: uppercase;
     height: 4rem;
 }
@@ -97,9 +101,11 @@
     background-color: #fff;
 }
 
+.bottom_div a{
+    width: 100%;
+}
 .bottom_div button:nth-child(2){
     background-color: #5ECE7B;
-    width: 14rem; 
     color: white;
 }
 .total{
