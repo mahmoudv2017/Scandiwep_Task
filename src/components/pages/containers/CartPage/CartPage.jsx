@@ -25,7 +25,13 @@ class CartPage extends Component {
         return (
             <div className={style.Cart_container}>
 
+            <div className={style.header_div}>
                 <h1 className={style.header}>Cart</h1>
+
+                <hr />
+            </div>
+               
+
 
                 {this.props.cart.length > 0 ?
                 <Wrapper>
