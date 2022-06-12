@@ -27,3 +27,13 @@
     gap: 3rem;
     padding-left: 7.5rem;
 }
+
+.ul_padder{
+    display: flex;
+    padding: 0;
+    gap: 0.5rem;
+    width: 13rem;
+    max-width: 100%;
+
+}
+

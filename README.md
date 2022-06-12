@@ -1,4 +1,6 @@
-# Mahmoud Hesham
+# Mahmoud Hesham Mahmoud
+
+#Note : Sorry for all the bad practice i am just used too using react hooks like useContext and such
 
 # Getting Started with Create React App
 

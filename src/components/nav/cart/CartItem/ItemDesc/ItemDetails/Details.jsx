@@ -10,7 +10,7 @@ class Details extends Component {
     }
     
     orderPrep = (e , x , type = 'Color' , index = 0 ) => {
-        x = '.'+x
+        x = '.'+x+'.'+this.props.style.ul_padder
       
         document.querySelectorAll(x+' li').forEach(list => {
             list.classList.remove(style.selected , style.color_selected)
@@ -67,7 +67,7 @@ class Details extends Component {
                                 
                                 { el.id === "Color" ? 
                                 
-                                <ul className={[style.ul_padder , style.sizer , x].join(' ')}>
+                                <ul className={[this.props.style.ul_padder , style.sizer , x].join(' ')}>
                                     {   el.items.map( (item , index) => {
                                          let selected = selected_attr.filter( attr => attr.id === el.id )[0]
                                          let classes = selected.value === index ? style.color_selected : null
@@ -88,7 +88,7 @@ class Details extends Component {
 
                                 
                                 {el.id !== "Color" ? 
-                                <ul className={[style.ul_padder , style.Not_sizer , x].join(' ')}>
+                                <ul className={[this.props.style.ul_padder , style.Not_sizer , x].join(' ')}>
                                     {
                                     el.items.map( (item , index) => {
 
