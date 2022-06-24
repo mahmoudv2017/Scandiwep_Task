@@ -4,7 +4,7 @@ import axios from '../../../../Axios';
 import scrollbar from './scrollbar/scrollbar.module.css'
 
 
-let selected_attr = []
+const selected_attr = []
 
 class PDP extends Component {
 
@@ -22,7 +22,7 @@ class PDP extends Component {
         })
         type === 'Color' ? e.target.classList.add(style.color_selected) : e.target.classList.add(style.selected)
 
-        let checker = selected_attr.find(attr => attr.id === type)
+        const checker = selected_attr.find(attr => attr.id === type)
         if (checker) { checker.value = index }
         else {
             selected_attr.push({
@@ -33,7 +33,7 @@ class PDP extends Component {
 
 
 
-        let product = this.state.selected_product
+        const product = this.state.selected_product
         product.selectedAttr.map(attr => {
 
             selected_attr.forEach(selected => {
@@ -53,15 +53,15 @@ class PDP extends Component {
 
         //  console.log(this.props.products)
         const stringer = window.location.pathname
-        let jsoner = '{"' + stringer.replace('/', '').replace(/=/g, '":"').replace(/ /g, ',') + '"}'
-        let jk = "\"" + JSON.parse(jsoner).id + "\""
+        const jsoner = '{"' + stringer.replace('/', '').replace(/=/g, '":"').replace(/ /g, ',') + '"}'
+        const jk = "\"" + JSON.parse(jsoner).id + "\""
 
         axios.get("/graphql?query={product(id:" + jk + "){id,name,gallery,description,inStock,category,prices{amount,currency{symbol}},brand,attributes{id,name,type,items{id,value}}}}")
             .then(res => {
-                let product = res.data.data.product
+                const product = res.data.data.product
                 product.selectedAttr = []
                 product.attributes.forEach(attr => {
-                    let x = {
+                    const x = {
                         id: attr.id, value: 0
                     }
 
@@ -119,12 +119,16 @@ class PDP extends Component {
                     <div>
 
                         <div className={style.pad_left}>
-                            <p className={style.header}>{this.state.selected_product.name}</p>
+                            <div>
+                                <p className={style.header}> {this.state.selected_product.brand}</p>
+                                <p className={style.brand}>{this.state.selected_product.name}</p>
+                            </div>
+                            
 
 
                             {this.state.selected_product.attributes.map((el, index) => {
 
-                                let x = this.state.selected_product.id + index
+                                const x = this.state.selected_product.id + index
 
                                 return (
                                     <div key={index} style={{ padding: '0', width: '90%' }}>
@@ -136,9 +140,9 @@ class PDP extends Component {
                                             <ul className={[style.ul_padder, style.sizer, x].join(' ')}>
                                                 {
                                                     el.items.map((item, index) => {
-                                                        let selected = selected_attr.filter(attr => attr.id === el.id)[0]
+                                                        const selected = selected_attr.filter(attr => attr.id === el.id)[0]
 
-                                                        let classes = selected.value === index ? style.color_selected : null
+                                                        const classes = selected.value === index ? style.color_selected : null
                                                         return <li key={index} className={classes} onClick={(e) => this.orderPrep(e, x, el.id, index)} style={{ backgroundColor: item.value, border: 'none' }} ></li>
                                                     })
                                                 }
@@ -155,9 +159,9 @@ class PDP extends Component {
                                             <ul className={[style.ul_padder, style.Not_sizer, x].join(' ')}>
                                                 {
                                                     el.items.map((item, index) => {
-                                                        let selected = selected_attr.filter(attr => attr.id === el.id)[0]
+                                                        const selected = selected_attr.filter(attr => attr.id === el.id)[0]
 
-                                                        let classes = selected.value === index ? style.selected : null
+                                                        const classes = selected.value === index ? style.selected : null
                                                         return <li key={index} className={classes} onClick={(e) => this.orderPrep(e, x, el.id, index)} >{item.value}</li>
                                                     })
                                                 }

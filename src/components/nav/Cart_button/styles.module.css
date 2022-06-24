@@ -1,5 +1,6 @@
-.clicked{
+.cartSvg{
     pointer-events: none;
+    padding-top: 15%;
 }
 
 
@@ -17,7 +18,7 @@
     width: 9px;
     height: 9px;
     top: -17%;
-    right: -61%;
+    right: 3%;
     align-items: center;
     justify-content: center;
     animation: scaler .3s forwards ease-in-out;

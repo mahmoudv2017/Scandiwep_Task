@@ -11,7 +11,7 @@ class CartPage extends Component {
         this.props.set_order(products)
     }
     render() { 
-        let totaler = {
+        const totaler = {
             total : 0,
             counter : 0,
             symbol : ''
@@ -41,6 +41,7 @@ class CartPage extends Component {
                     <CartItem 
                     details_style={style_test}  
                     ItemDesc_style = {itemDesc_style}
+                    arrows = {style.arrows}
                     incrementer={this.props.incrementer} 
                     prep_order={this.prep_order}  
                     decremnter={this.props.decremnter}  

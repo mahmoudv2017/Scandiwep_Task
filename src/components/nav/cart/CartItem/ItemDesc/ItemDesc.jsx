@@ -24,7 +24,7 @@ class ItemDesc extends React.Component {
                     </ul> */}
                 </div>
 
-                <ItemImage incrementer={this.props.incrementer} decremnter={this.props.decremnter} item={this.props.item} index={this.props.index} />
+                <ItemImage arrows={this.props.arrows} incrementer={this.props.incrementer} decremnter={this.props.decremnter} item={this.props.item} index={this.props.index} />
                 <hr />
             </div>
          

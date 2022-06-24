@@ -32,14 +32,14 @@ class Card extends Component {
                     </Link>
                
                 
-                <p>{this.props.product.name}</p>
+                <p>{this.props.product.brand} {this.props.product.name}</p>
                 
                 {this.props.product.inStock ?  
                     <div className={style.cart_adder} onClick={ () => this.props.ProductAdder(this.props.product)}>
                         <CartAdderSvg />
                     </div> : false}
                
-                <p className={style.price}>{this.props.currency_selector[this.props.selected_currency]} {this.props.product.prices[this.props.selected_currency].amount}</p>
+                <p className={style.price}>{this.props.product.prices[this.props.selected_currency].currency.symbol} {this.props.product.prices[this.props.selected_currency].amount}</p>
             </div>
         );
     }

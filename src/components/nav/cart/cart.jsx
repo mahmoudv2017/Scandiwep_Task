@@ -13,9 +13,10 @@ class Cart extends Component {
   state={refresh : false}
 
     render() { 
-        let totaler = {
+        const totaler = {
             total : 0,
-            symbol : ''
+            symbol : '',
+            counter : 0
         }
 
       
@@ -23,9 +24,9 @@ class Cart extends Component {
        this.props.cart.forEach(element => {
            totaler.symbol = element.prices[this.props.selected_currency].currency.symbol
            totaler.total += (element.prices[this.props.selected_currency].amount * element.count)
-           totaler.total =  Math.round(totaler.total * 10) / 10
-       
-           return totaler.total
+        //    totaler.total = Number(totaler.total).toFixed(2)
+            totaler.counter += element.count
+        //    return totaler.total 
        });
 
         return (
@@ -36,7 +37,7 @@ class Cart extends Component {
             {this.props.cart.length > 0 ? 
                 <div style={{height : 'inherit'}}>
                     <div className={[style.top_div , scrollBar.invisible_scrollbar].join(' ')}>
-                        <p className={style.pad_left} >My Bag<span>, {this.props.cart.length} items</span></p>
+                        <p className={style.pad_left} >My Bag<span>, {totaler.counter} items</span></p>
 
                     
 
@@ -45,6 +46,7 @@ class Cart extends Component {
                             productAdder={this.props.productAdder} 
                             incrementer={this.props.incrementer} 
                             decremnter={this.props.decremnter} 
+                            arrows={style.arrows}
                             details_style={details_style}
                             ItemDesc_style={ItemDesc_style}
                             shirt_arr={this.props.cart} 
@@ -54,7 +56,7 @@ class Cart extends Component {
                     
                         <div className={style.total}>
                             <p>Total : </p>
-                            <p>{totaler.symbol}  {totaler.total}</p>
+                            <p>{totaler.symbol}  { Number(totaler.total).toFixed(2) }</p>
                         </div>
 
                     </div>

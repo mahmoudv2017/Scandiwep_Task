@@ -11,8 +11,8 @@ class PLP extends Component {
 
 
     render() { 
-        let products = this.props.products
-        let x = products.map( (product , index) => {
+        const products = this.props.products
+        const x = products.map( (product , index) => {
             return(
 
                 <Card prop_key={index} key={index} currency_selector={this.props.currency_selector} selected_currency={this.props.currency}  product={product} ProductAdder={this.props.ProductAdder}/>

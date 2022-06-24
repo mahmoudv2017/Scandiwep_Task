@@ -11,11 +11,11 @@ class CartItem extends Component {
     render() { 
 
     
-       let arr = this.props.shirt_arr
+       const arr = this.props.shirt_arr
 
    
 
-      //  let x = 
+      //  const x = 
 
         
        return (
@@ -29,7 +29,7 @@ class CartItem extends Component {
                         some_key={index} 
                         key={index} 
                         index={index} 
-              
+                        arrows={this.props.arrows}
                         details_style={this.props.details_style}
                         ItemDesc_style={this.props.ItemDesc_style}
                         productAdder={this.props.productAdder}

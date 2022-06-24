@@ -33,15 +33,11 @@
     flex-direction: column;
     user-select: none;
 }
-.image_container > ul:last-child{
+/* .image_container > ul:last-child{
     display: none;
     position: absolute;
-}
+} */
 
-.image_container ul:last-child li{
-    border: 1.5px solid #FFFFFF;
-transform: matrix(1, 0, 0, -1, 0, 0);
-}
 
 
 .image_container .count li:nth-child(2n+1){
@@ -49,7 +45,7 @@ transform: matrix(1, 0, 0, -1, 0, 0);
     cursor: pointer;
 
 }
-/* .image_container .count li:nth-child(3){
+ .image_container .count li:nth-child(3){
     border: 1px solid black;
     cursor: pointer;
-} */
+}

@@ -6,12 +6,12 @@ import axios from "../../Axios";
 import PLP from "../pages/containers/PLP/PLP";
 import PDP from "../pages/containers/PDP/PDP";
 import CartPage from "../pages/containers/CartPage/CartPage";
+import './style.module.css'
 
 class Layout extends Component {
   state = {
 
-    currency: 2,
-    currency_selector: ["$", "£", "A$", "¥", "₽"],
+    currency: 0,
     category_selector: 'all',
     prices: false,
     products: [],
@@ -37,8 +37,8 @@ class Layout extends Component {
   }
 
   incrementer = (index) => {
-    let props = this.state
-    let number = props.cart[index].count + 1
+    const props = this.state
+    const number = props.cart[index].count + 1
     props.cart[index].count = number
     props.cart[index].current_price = Math.round(( props.cart[index].prices[props.currency].amount * props.cart[index].count * 10))/10
     this.setState({cart : props.cart})
@@ -46,9 +46,9 @@ class Layout extends Component {
 
 decremnter = (index) => {
 
-    let props = this.state
+    const props = this.state
     console.log({index : props.cart})
-    let number = props.cart[index].count - 1
+    const number = props.cart[index].count - 1
     
      if(number === 0){
          props.cart.splice(index,1)
@@ -67,8 +67,8 @@ decremnter = (index) => {
 
   ProductAdder = (product ) => {
 
-    let arr = this.state.cart
-    let selected = arr.findIndex( procut => procut.id === product.id )
+    const arr = this.state.cart
+    const selected = arr.findIndex( procut => procut.id === product.id )
       if(selected !== -1){
         
         product.count = 1
@@ -81,9 +81,9 @@ decremnter = (index) => {
 
 
       if(product.selectedAttr.length === 0){
-        let attribues = []
+        const attribues = []
         product.selectedAttr.forEach( attr => {
-          let x = {
+          const x = {
             id : attr.id , value : 0
           }
           attribues.push(x)
@@ -140,7 +140,7 @@ decremnter = (index) => {
                   products={this.state.products}
                   currency={this.state.currency}
                   category_selector={this.state.category_selector}
-                  currency_selector={this.state.currency_selector}
+          
                   cart={this.state.cart}
                   ProductAdder={this.ProductAdder}
                 />

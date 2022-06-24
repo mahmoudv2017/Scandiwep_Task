@@ -8,6 +8,7 @@ import axios from '../../Axios';
 import CartButton from './Cart_button/Cart_button';
 import { Link  } from 'react-router-dom';
 import ErrorBoundary from '../hoc/ErrorBoundary';
+import Arrow from './prices/arrow';
 
 class Nav extends Component {
     
@@ -27,24 +28,21 @@ class Nav extends Component {
         axios.get('/graphql?query={currencies{symbol , label}}')
         .then(res => {
           this.setState({currencies : res.data.data.currencies})
-         // console.log(this.state)
         })
         
       }
-    prices_toggler = ( ) => {
+    prices_toggler = (e ) => {
+      
+      document.getElementsByClassName(styles.currency_div)[0].classList.toggle(styles.upArrow)
 
-        let backdrop_state = this.state.backdrop
-        let prev_prices = this.state.prices
-        if(this.state.cart_toggler === true){
-            backdrop_state = false
-        }
-        this.setState({backdrop:!backdrop_state , prices:!prev_prices , cart_toggler : false })
+        const prev_prices = this.state.prices
+        this.setState({backdrop:false , prices:!prev_prices , cart_toggler : false })
     }
 
     cart_toggler = ( ) => {
-        
+     
         let backdrop_state = this.state.backdrop
-        let prev_prices = this.state.cart_toggler
+        const prev_prices = this.state.cart_toggler
         if(this.state.prices === true){
             backdrop_state = false
         }
@@ -91,14 +89,33 @@ class Nav extends Component {
                     </div>
 
                     <ul className={styles.right_list}>
-                      {this.state.currencies ? <li onClick={this.prices_toggler}  >  {this.state.currencies[this.props.currency].symbol}  </li> : false }  
+                      {this.state.currencies ? 
+                        
+                        <div className={styles.currency_div} onClick={ (e) => this.prices_toggler(e)}>
+                            <li>  {this.state.currencies[this.props.currency].symbol}  </li>
+                            <Arrow />
+
+                            {this.state.currencies ? 
+
+                                <Prices  
+
+                                prices={this.state.prices}
+                                currncy_changer={this.state.curency_changer} 
+                                currencies={this.state.currencies}
+                                backdrop_closer={this.backdrop_closer}
+                            /> : false} 
+                        </div>
+                    
+
+                        
+                        : false }  
                         <CartButton cart_toggler={this.cart_toggler} count={this.props.cart.length}/>
                         
               
                     </ul>
 
 
-                    {this.state.currencies ? <Prices prices={this.state.prices} currncy_changer={this.state.curency_changer} currencies={this.state.currencies} /> : false} 
+                   
 
                     { this.state.cart_toggler ? <Cart 
                     selected_currency={this.props.currency} 

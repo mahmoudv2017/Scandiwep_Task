@@ -83,7 +83,16 @@
 
 .flex_container .pad_left .header{
     font-size: 30px;
+    margin-bottom: 0;
 }   
+.brand{
+    margin-top: 0;
+    font-family: 'Raleway';
+font-style: normal;
+font-weight: 400 !important;
+font-size: 30px;
+line-height: 27px;
+}
 
 .flex_container .pad_left{
     display: grid;

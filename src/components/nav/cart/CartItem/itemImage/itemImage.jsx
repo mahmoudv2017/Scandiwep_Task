@@ -13,7 +13,7 @@ class ItemImage extends Component {
   
     render() { 
 
-        let item = this.props.item
+        const item = this.props.item
         return (
             <div className={style.image_container}> 
                 <img className={style.image_size} src={ this.state.index+1 > item.gallery.length ? item.gallery[0] : item.gallery[this.state.index]} alt={item.gallery[0]}/>
@@ -24,12 +24,14 @@ class ItemImage extends Component {
                     <li onClick={ () => this.props.decremnter(this.props.index) }>-</li>
                 </ul>
 
-                <ul>
+              {item.gallery.length > 1 ? 
+              <ul className={this.props.arrows}>
                 <li onClick={ () => {if(this.state.index-1 >= 0) {  this.setState({index:this.state.index-1})  } } }> <LeftButton /> </li>
                 <li onClick={ () => {if(item.gallery.length > this.state.index+1) {  this.setState({index:this.state.index+1})  } } } ><RightButton /></li>
-                    
-                    
-                </ul>
+                
+                
+            </ul> : false
+              }  
             </div>
         );
     }

@@ -37,15 +37,15 @@
 
 
 
-.Cart_container div:nth-child(2) > ul:last-child{
+.arrows{
     display: flex;
     position: absolute;
     gap: 1rem;
     right: 31%;
     bottom: 14%;
-}
+} 
 
-.Cart_container div:nth-child(2) > ul:last-child li{
+.arrows li{
     width: 32px;
     height: 32px;
     display: flex;

@@ -20,11 +20,15 @@ class Prices extends Component {
             <ul className={styler}>
 
                 {prices.map( (currency,index) => {
-                    return <li onClick={() => this.state.currncy_changer(index)} key={index}>{currency.symbol}   {currency.label}</li>
+                    return <li onClick={() => {
+
+                        this.props.backdrop_closer()
+
+                        this.state.currncy_changer(index)
+
+                    } } key={index}>{currency.symbol}   {currency.label}</li>
                 } )}
-                {/* <li>$ USD</li>
-                <li>€ EUR</li>
-                <li>¥ JPY</li> */}
+
             </ul>
         );
     }
