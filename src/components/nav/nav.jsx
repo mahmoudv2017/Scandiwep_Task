@@ -40,7 +40,7 @@ class Nav extends Component {
     }
 
     cart_toggler = ( ) => {
-     
+        document.getElementsByClassName(styles.currency_div)[0].classList.remove(styles.upArrow)
         let backdrop_state = this.state.backdrop
         const prev_prices = this.state.cart_toggler
         if(this.state.prices === true){
@@ -68,8 +68,8 @@ class Nav extends Component {
                     <ul className={styles.left_list}>
                         {this.props.allcategs.map((cat,index) => {
                             return(
-                                <li key={index} onClick={() => {this.props.categories_changer(index)}}>
-                                <Link to='/'>
+                                <li key={index} onClick={() => {this.props.categories_changer(cat)}}>
+                                <Link to="/" >
                                     {cat.name}
                                 </Link>
                             </li>

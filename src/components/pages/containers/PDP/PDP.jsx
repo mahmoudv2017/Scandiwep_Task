@@ -1,8 +1,10 @@
 import { Component } from 'react';
 import style from './PDP.module.css'
-import axios from '../../../../Axios';
+// import axios from '../../../../Axios';
+import React from 'react';
 import scrollbar from './scrollbar/scrollbar.module.css'
-
+import {get_product} from '../../../../context/models'
+import {Interweave} from 'interweave'
 
 const selected_attr = []
 
@@ -51,13 +53,10 @@ class PDP extends Component {
 
     componentDidMount = (id) => {
 
-        //  console.log(this.props.products)
         const stringer = window.location.pathname
         const jsoner = '{"' + stringer.replace('/', '').replace(/=/g, '":"').replace(/ /g, ',') + '"}'
-        const jk = "\"" + JSON.parse(jsoner).id + "\""
-
-        axios.get("/graphql?query={product(id:" + jk + "){id,name,gallery,description,inStock,category,prices{amount,currency{symbol}},brand,attributes{id,name,type,items{id,value}}}}")
-            .then(res => {
+        const jk =JSON.parse(jsoner).id
+        get_product(jk).then(res => {
                 const product = res.data.data.product
                 product.selectedAttr = []
                 product.attributes.forEach(attr => {
@@ -68,19 +67,18 @@ class PDP extends Component {
                     product.selectedAttr.push(x)
                 })
                 this.setState({ selected_product: product })
-            })
+        })
+        
     }
 
     createMarkup() {
-        return { __html: this.state.selected_product.description };
+        return this.state.selected_product.description ;
     }
-
 
 
     render() {
 
-
-        let images, x, selected_attr
+        let images, x, selected_attr , y
 
 
         if (this.state.selected_product) {
@@ -90,11 +88,17 @@ class PDP extends Component {
 
             images = this.state.selected_product.gallery.map((image_link, index) => {
                 return <img key={index} src={image_link} onClick={() => {
+                  
                     this.setState({ selected_index: index })
+                    
                 }} alt="asdasd" />
             })
 
-            if (document.getElementById('desc')) { document.getElementById('desc').innerHTML = this.state.selected_product.description }
+
+
+
+            //  y.innerHTML = this.state.selected_product.description 
+         // document.querySelector(style.desc).innerHTML = this.state.selected_product.description 
 
 
         }
@@ -189,8 +193,13 @@ class PDP extends Component {
                                 this.props.ProductAdder(this.state.selected_product)
 
                             }}>{this.state.selected_product.inStock ? 'Add To Cart' : 'Out Of Stock'}</button>
+                            <div  className={[style.desc, scrollbar.invisible_scrollbar].join(' ')}>
+                                <Interweave content={this.state.selected_product.description} />
+                            </div>
+                          
+                             {/* <div html className={[style.desc, scrollbar.invisible_scrollbar].join(' ')} >325</div>  */}
 
-                            <div className={[style.desc, scrollbar.invisible_scrollbar].join(' ')} dangerouslySetInnerHTML={this.createMarkup()} ></div>
+                            {/* {document.getElementsByClassName(style.desc).innerHTML = "<h1>asd</h1>"} */}
 
 
                         </div>

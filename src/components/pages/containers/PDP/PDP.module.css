@@ -6,7 +6,7 @@
     flex-direction: column;
     overflow-y: scroll;
     height: 27rem;
-    align-items: center;
+    align-items: flex-end;
 }
 
 
@@ -186,6 +186,26 @@ line-height: 27px;
 
 .buttonSection button{
     width: 100%;
+    position: relative;
+}
+
+.buttonSection button::after{
+    position: absolute;
+    content: 'already in cart';
+    text-transform: capitalize;
+    border-radius: 35px;
+    color: #5ECE7B;
+    background-color: #eeee;
+    z-index: -1;
+    /* top: -84%; */
+    transform: translate(42%, -50%);
+    left: -9%;
+    right: 49%;
+
+}
+
+.swiperanime::after{
+    animation: swiperAnimation 3s backwards ease-in-out;
 }
 
   .buttonSection div{
@@ -245,6 +265,15 @@ line-height: 27px;
     pointer-events: none;
     user-select: none;
     content: 'OUT OF STOCK';
+}
+
+
+@keyframes swiperAnimation {
+
+    100%{
+        transform: translate(42%, -204%);
+    }
+    
 }
 
 @media (max-width : 1300px){

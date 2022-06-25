@@ -2,17 +2,18 @@ import { Component } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Wrapper from "../hoc/wrapper";
 import Nav from "../nav/nav";
-import axios from "../../Axios";
+// import axios from "../../Axios";
 import PLP from "../pages/containers/PLP/PLP";
 import PDP from "../pages/containers/PDP/PDP";
 import CartPage from "../pages/containers/CartPage/CartPage";
 import './style.module.css'
+import {get_category , get_all_categories} from '../../context/models'
 
 class Layout extends Component {
   state = {
 
     currency: 0,
-    category_selector: 'all',
+    category_selector: '',
     prices: false,
     products: [],
     selectedAttr:[],
@@ -23,18 +24,35 @@ class Layout extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get(
-        "/graphql?query={categories{name,products{id,name,inStock,description,gallery,brand,attributes{id,name,type,items{id,value}},category,prices{amount,currency{symbol}}}}}"
-      )
-      .then((res) => {
+    get_all_categories().then(cats => {
+      get_category(cats.data.data.categories[0].name)
+      .then(products => {
         this.setState({
-          products:
-            res.data.data.categories[0].products,
-          allProducts: res.data.data.categories,
-        });
-      });
+          category_selector : cats.data.data.categories[0].name,
+          products : products.data.data.products,
+          allProducts : cats.data.data.categories
+        })
+      })
+    })
+    
+
   }
+
+// this is not a duplicated request because componentDidUpdate Only triggers when the state or props are updated and
+// is not triggered at the inilization like componentDidMount which i only used to get inital products
+componentDidUpdate(prevState){
+  if (this.state.category_selector !== prevState.category_selector) {
+   
+      get_category(this.state.category_selector)
+      .then(values => {
+    
+        this.setState({
+          products:values.data.data.category.products
+    });
+    
+    })
+  }
+}
 
   incrementer = (index) => {
     const props = this.state
@@ -61,8 +79,8 @@ decremnter = (index) => {
     this.setState({cart : props.cart})
 }
 
-  categories_changer = (index) => {
-    this.setState({ products: this.state.allProducts[index].products , category_selector : this.state.allProducts[index].name });
+  categories_changer = (cat) => {
+    this.setState({ category_selector: cat.name });
   };
 
   ProductAdder = (product ) => {
@@ -70,7 +88,7 @@ decremnter = (index) => {
     const arr = this.state.cart
     const selected = arr.findIndex( procut => procut.id === product.id )
       if(selected !== -1){
-        
+        console.log('lost then found')
         product.count = 1
         arr[selected] = product
         this.setState({cart : arr})
@@ -136,19 +154,22 @@ decremnter = (index) => {
             <Route
               path="/"
               element={
-                <PLP
+                
+                  this.state.products ?  <PLP
                   products={this.state.products}
                   currency={this.state.currency}
                   category_selector={this.state.category_selector}
           
                   cart={this.state.cart}
                   ProductAdder={this.ProductAdder}
-                />
+                /> : false
+                
+               
               }
             />
 
             <Route
-              path=":id"
+              path="/:id"
               element={
                 <PDP
                   products={this.state.products}
