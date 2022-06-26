@@ -9,9 +9,11 @@ class Details extends Component {
         refresh : true
     }
     
-    orderPrep = (e , x , type = 'Color' , index = 0 ) => {
-        x = '.'+x+'.'+this.props.style.ul_padder
-      
+    orderPrep = (e , x , type = 'Color' , index = 0 , another_index = 0 ) => {
+        x = '.'+x+'.'+x+another_index
+        document.querySelectorAll(x).forEach(ul => {
+            console.log(ul)
+        })
         document.querySelectorAll(x+' li').forEach(list => {
             list.classList.remove(style.selected , style.color_selected)
         })
@@ -73,14 +75,14 @@ class Details extends Component {
                                 
                                 { el.id === "Color" ? 
                                 
-                                <ul className={[this.props.style.ul_padder , style.sizer , x].join(' ')}>
+                                <ul className={[this.props.style.ul_padder , style.sizer , x, this.props.index].join(' ')}>
                                     {   el.items.map( (item , index) => {
                                          const selected = selected_attr.filter( attr => attr.id === el.id )[0]
                                          const classes = selected.value === index ? style.color_selected : null
                                         
                                 return (
                                     
-                                    <li key={index} className={classes} onClick={ (e) => this.orderPrep(e , x , el.id , index)} style={{backgroundColor : item.value  }}  ></li>
+                                    <li key={index} className={classes} onClick={ (e) => this.orderPrep(e , x , el.id , index , this.props.index)} style={{backgroundColor : item.value  }}  ></li>
                                
                                 )  
                                 } ) }
@@ -94,14 +96,14 @@ class Details extends Component {
 
                                 
                                 {el.id !== "Color" ? 
-                                <ul className={[this.props.style.ul_padder , style.Not_sizer , x].join(' ')}>
+                                <ul className={[this.props.style.ul_padder , style.Not_sizer , x , this.props.index].join(' ')}>
                                     {
                                     el.items.map( (item , index) => {
 
                                         const selected = selected_attr.filter( attr => attr.id === el.id )[0]
                                         
                                         const classes = selected.value === index ? style.selected : null
-                                        return  <li key={index} className={classes}  onClick={ (e) => this.orderPrep(e , x , el.id , index)} >{item.value}</li>
+                                        return  <li key={index} className={classes}  onClick={ (e) => this.orderPrep(e , x , el.id , index, this.props.index)} >{item.value}</li>
                                         } )
                                     } 
                                     </ul> : false}

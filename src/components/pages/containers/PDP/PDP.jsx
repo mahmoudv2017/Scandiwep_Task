@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import style from './PDP.module.css'
 // import axios from '../../../../Axios';
+import {Link} from 'react-router-dom'
 import React from 'react';
 import scrollbar from './scrollbar/scrollbar.module.css'
 import {get_product} from '../../../../context/models'
@@ -80,7 +81,7 @@ class PDP extends Component {
 
         let images, x, selected_attr , y
 
-
+   
         if (this.state.selected_product) {
 
             x = this.state.selected_product.inStock ? style.inStock : style.outStock
@@ -188,11 +189,14 @@ class PDP extends Component {
                         </div>
 
                         <div className={style.buttonSection}>
+                            <Link to="/">
                             <button className={[x].join(' ')} onClick={() => {
                                 selected_attr = []
                                 this.props.ProductAdder(this.state.selected_product)
 
                             }}>{this.state.selected_product.inStock ? 'Add To Cart' : 'Out Of Stock'}</button>
+                            </Link>
+                          
                             <div  className={[style.desc, scrollbar.invisible_scrollbar].join(' ')}>
                                 <Interweave content={this.state.selected_product.description} />
                             </div>

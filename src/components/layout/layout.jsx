@@ -40,7 +40,7 @@ class Layout extends Component {
 
 // this is not a duplicated request because componentDidUpdate Only triggers when the state or props are updated and
 // is not triggered at the inilization like componentDidMount which i only used to get inital products
-componentDidUpdate(prevState){
+componentDidUpdate(prevprops , prevState){
   if (this.state.category_selector !== prevState.category_selector) {
    
       get_category(this.state.category_selector)
@@ -90,7 +90,7 @@ decremnter = (index) => {
       if(selected !== -1){
         console.log('lost then found')
         product.count = 1
-        arr[selected] = product
+        arr.push(product) 
         this.setState({cart : arr})
         return
       
