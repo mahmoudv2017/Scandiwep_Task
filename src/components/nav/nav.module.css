@@ -1,5 +1,7 @@
 /* unordered list styling */
-
+*{
+    font-family: 'Raleway';
+}
 ul{
     list-style: none;
 }
@@ -30,7 +32,7 @@ nav::after{
 
 .left_list{
     display: flex;
-
+    font-family: 'Raleway';
     text-transform: uppercase;
     column-gap: 2rem;
     font-style: normal;

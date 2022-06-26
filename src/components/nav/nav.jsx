@@ -130,7 +130,6 @@ class Nav extends Component {
                     : null }
                 </nav>
 
-                {/* further optimizations needed , put the backdrop inside the two elements */}
                  
                  <Backdrop enabler={this.backdrop_closer} backdrop={this.state.backdrop}/>
             </ErrorBoundary>

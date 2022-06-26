@@ -24,9 +24,7 @@ class Cart extends Component {
        this.props.cart.forEach(element => {
            totaler.symbol = element.prices[this.props.selected_currency].currency.symbol
            totaler.total += (element.prices[this.props.selected_currency].amount * element.count)
-        //    totaler.total = Number(totaler.total).toFixed(2)
             totaler.counter += element.count
-        //    return totaler.total 
        });
 
         return (

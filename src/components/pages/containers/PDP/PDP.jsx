@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import style from './PDP.module.css'
-// import axios from '../../../../Axios';
 import {Link} from 'react-router-dom'
 import React from 'react';
 import scrollbar from './scrollbar/scrollbar.module.css'
@@ -98,9 +97,6 @@ class PDP extends Component {
 
 
 
-            //  y.innerHTML = this.state.selected_product.description 
-         // document.querySelector(style.desc).innerHTML = this.state.selected_product.description 
-
 
         }
 
@@ -189,21 +185,20 @@ class PDP extends Component {
                         </div>
 
                         <div className={style.buttonSection}>
-                            <Link to="/">
-                            <button className={[x].join(' ')} onClick={() => {
-                                selected_attr = []
-                                this.props.ProductAdder(this.state.selected_product)
+                        { y = this.state.selected_product.inStock}
+                            <Link to="/" className={y ? '' : style.inactive}>
+                                <button className={[x].join(' ')} onClick={() => {
+                                    selected_attr = []
+                                    this.props.ProductAdder(this.state.selected_product)
 
-                            }}>{this.state.selected_product.inStock ? 'Add To Cart' : 'Out Of Stock'}</button>
+                                }}>{this.state.selected_product.inStock ? 'Add To Cart' : 'Out Of Stock'}</button>
                             </Link>
                           
                             <div  className={[style.desc, scrollbar.invisible_scrollbar].join(' ')}>
                                 <Interweave content={this.state.selected_product.description} />
                             </div>
                           
-                             {/* <div html className={[style.desc, scrollbar.invisible_scrollbar].join(' ')} >325</div>  */}
-
-                            {/* {document.getElementsByClassName(style.desc).innerHTML = "<h1>asd</h1>"} */}
+                          
 
 
                         </div>
