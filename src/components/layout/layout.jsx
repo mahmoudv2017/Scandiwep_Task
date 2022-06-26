@@ -88,10 +88,8 @@ decremnter = (index) => {
     const arr = this.state.cart
     const selected = arr.findIndex( procut => procut.id === product.id )
       if(selected !== -1){
-        console.log('lost then found')
         product.count = 1
         const new_arr = arr.filter(procut => procut.id === product.id)
-        console.log({new_arr : new_arr , product : product.selectedAttr})
         for(let i = 0 ; i< new_arr.length ; i++){
           
           if(JSON.stringify(new_arr[i].selectedAttr)  === JSON.stringify(product.selectedAttr) ){

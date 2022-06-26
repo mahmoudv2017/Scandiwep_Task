@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import style from './PDP.module.css'
-import {Link} from 'react-router-dom'
 import React from 'react';
 import scrollbar from './scrollbar/scrollbar.module.css'
 import {get_product} from '../../../../context/models'
@@ -14,7 +13,7 @@ class PDP extends Component {
     state = {
         selected_index: 0,
         selected_attr : [],
-        selected_product: null
+        selected_product: {}
     }
 
     orderPrep = (e, x, type = 'Color', index = 0) => {
@@ -23,31 +22,26 @@ class PDP extends Component {
             list.classList.remove(style.selected, style.color_selected)
         })
         type === 'Color' ? e.target.classList.add(style.color_selected) : e.target.classList.add(style.selected)
-        const attributes = this.state.selected_attr
+        const attributes = [...this.state.selected_attr]
         const checker = attributes.find(attr => attr.id === type)
         if (checker) { checker.value = index }
         else {
             attributes.push({
                 id: type, value: index
             })
+
+            const product ={...this.state.selected_product} 
+            product.selectedAttr = [...attributes] 
+    
+    
+    
+            this.setState({ selected_product: product })
         }
 
 
 
 
-        const product = this.state.selected_product
-        product.selectedAttr.map(attr => {
-
-            attributes.forEach(selected => {
-                if (attr.id === selected.id) {
-                    attr.value = selected.value
-                }
-            })
-            return attr
-
-        })
-
-        this.setState({ selected_product: product , selected_attr : attributes})
+       
     }
 
 
@@ -78,14 +72,14 @@ class PDP extends Component {
 
     render() {
 
-        let images, x , y
+        let images, x 
 
-   
-        if (this.state.selected_product) {
+        let product = {...this.state.selected_product}
+        if (Object.keys(product).length > 0) {
 
-            x = this.state.selected_product.inStock ? style.inStock : style.outStock
+            x = product.inStock ? style.inStock : style.outStock
 
-            images = this.state.selected_product.gallery.map((image_link, index) => {
+            images = product.gallery.map((image_link, index) => {
                 return <img key={index} src={image_link} onClick={() => {
                   
                     this.setState({ selected_index: index })
@@ -102,7 +96,7 @@ class PDP extends Component {
 
         return (
             <div>
-                {this.state.selected_product ? <div className={style.flex_container}>
+                {Object.keys(product).length > 0 ? <div className={style.flex_container}>
 
                     <div className={[style.images_swapper, scrollbar.invisible_scrollbar].join(' ')}>
 
@@ -113,22 +107,22 @@ class PDP extends Component {
 
 
                     <div className={style.big_img}>
-                        <img src={this.state.selected_product.gallery[this.state.selected_index]} alt="asdasd" />
+                        <img src={product.gallery[this.state.selected_index]} alt="asdasd" />
                     </div>
 
                     <div>
 
                         <div className={style.pad_left}>
                             <div>
-                                <p className={style.header}> {this.state.selected_product.brand}</p>
-                                <p className={style.brand}>{this.state.selected_product.name}</p>
+                                <p className={style.header}> {product.brand}</p>
+                                <p className={style.brand}>{product.name}</p>
                             </div>
                             
 
 
-                            {this.state.selected_product.attributes.map((el, index) => {
+                            {product.attributes.map((el, index) => {
 
-                                const x = this.state.selected_product.id + index
+                                const x = product.id + index
 
                                 return (
                                     <div key={index} style={{ padding: '0', width: '90%' }}>
@@ -184,13 +178,10 @@ class PDP extends Component {
                         </div>
 
                         <div className={style.buttonSection}>
-                        { y = this.state.selected_product.inStock}
-                            <Link to="/" className={y ? '' : style.inactive}>
                                 <button className={[x].join(' ')} onClick={() => {
                                     this.props.ProductAdder(this.state.selected_product)
 
                                 }}>{this.state.selected_product.inStock ? 'Add To Cart' : 'Out Of Stock'}</button>
-                            </Link>
                           
                             <div  className={[style.desc, scrollbar.invisible_scrollbar].join(' ')}>
                                 <Interweave content={this.state.selected_product.description} />
