@@ -20,32 +20,7 @@ class Details extends Component {
         })
         type === 'Color' ? e.target.classList.add(style.color_selected) : e.target.classList.add(style.selected)
 
-      //  const checker = selected_attr.find(attr => attr.id === type)
-        // if (checker) { checker.value = index }
-        // else {
-        //     selected_attr.push({
-        //         id: type, value: index
-        //     })
-        // }
-
-
-
-
-        // const product = this.props.item
-        // product.selectedAttr.map(attr => {
-
-        //     selected_attr.forEach(selected => {
-        //         if (attr.id === selected.id) {
-        //             attr.value = selected.value
-        //         }
-        //     })
-        //     return attr
-
-        // })
-
-   
-        //this.props.productAdder(product)
-       /// this.setState({refresh:false})
+    
     }
     
     render() { 
@@ -102,8 +77,10 @@ class Details extends Component {
                                     el.items.map( (item , index) => {
 
                                         const selected = selected_attr.filter( attr => attr.id === el.id )[0]
-                                        
-                                        const classes = selected.value === index ? style.selected : null
+                                        let classes = null
+                                        if(selected){
+                                             classes = selected.value === index ? style.selected : null
+                                        }
                                         return  <li key={index} className={classes}  onClick={ (e) => this.orderPrep(e , x , el.id , index, this.props.index)} >{item.value}</li>
                                         } )
                                     } 

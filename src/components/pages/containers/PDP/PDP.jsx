@@ -9,7 +9,6 @@ import {Interweave} from 'interweave'
 
 class PDP extends Component {
 
-
     state = {
         selected_index: 0,
         selected_attr : [],
@@ -22,23 +21,22 @@ class PDP extends Component {
             list.classList.remove(style.selected, style.color_selected)
         })
         type === 'Color' ? e.target.classList.add(style.color_selected) : e.target.classList.add(style.selected)
-        const attributes = [...this.state.selected_attr]
-        const checker = attributes.find(attr => attr.id === type)
-        if (checker) { checker.value = index }
-        else {
-            attributes.push({
-                id: type, value: index
-            })
-
-            const product ={...this.state.selected_product} 
-            product.selectedAttr = [...attributes] 
-    
-    
-    
-            this.setState({ selected_product: product })
+        const attributes = {...this.state.selected_product}
+        let new_arr = []
+        for (let index = 0; index < attributes.selectedAttr.length; index++) {
+            
+            new_arr.push({...attributes.selectedAttr[index]})
+           
         }
 
+        const checker = new_arr.findIndex(attr => attr.id === type)
+        
+        if (checker !== -1) { new_arr[checker].value = index }
+        
+        let product = {...this.state.selected_product}
+        product.selectedAttr = [...new_arr]
 
+        this.setState({ selected_product: product })
 
 
        
@@ -48,10 +46,11 @@ class PDP extends Component {
     componentDidMount = (id) => {
 
         const stringer = window.location.pathname
+       
         const jsoner = '{"' + stringer.replace('/', '').replace(/=/g, '":"').replace(/ /g, ',') + '"}'
         const jk =JSON.parse(jsoner).id
         get_product(jk).then(res => {
-                const product = res.data.data.product
+                const product ={...res.data.data.product} 
                 product.selectedAttr = []
                 product.attributes.forEach(attr => {
                     const x = {
@@ -59,8 +58,9 @@ class PDP extends Component {
                     }
 
                     product.selectedAttr.push(x)
+         
                 })
-                this.setState({ selected_product: product })
+                this.setState({ selected_product: product})
         })
         
     }
