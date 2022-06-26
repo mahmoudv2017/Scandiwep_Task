@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import style from './Details.module.css'
 
-const selected_attr = []
 
 
 class Details extends Component {
@@ -10,41 +9,43 @@ class Details extends Component {
     }
     
     orderPrep = (e , x , type = 'Color' , index = 0 , another_index = 0 ) => {
-        x = '.'+x+'.'+x+another_index
-        document.querySelectorAll(x).forEach(ul => {
-            console.log(ul)
-        })
-        document.querySelectorAll(x+' li').forEach(list => {
+        x = x+another_index
+
+     
+      
+        console.log(x)
+        document.querySelectorAll('#'+x+' li').forEach(list => {
+           
             list.classList.remove(style.selected , style.color_selected)
         })
         type === 'Color' ? e.target.classList.add(style.color_selected) : e.target.classList.add(style.selected)
 
-        const checker = selected_attr.find(attr => attr.id === type)
-        if (checker) { checker.value = index }
-        else {
-            selected_attr.push({
-                id: type, value: index
-            })
-        }
+      //  const checker = selected_attr.find(attr => attr.id === type)
+        // if (checker) { checker.value = index }
+        // else {
+        //     selected_attr.push({
+        //         id: type, value: index
+        //     })
+        // }
 
 
 
 
-        const product = this.props.item
-        product.selectedAttr.map(attr => {
+        // const product = this.props.item
+        // product.selectedAttr.map(attr => {
 
-            selected_attr.forEach(selected => {
-                if (attr.id === selected.id) {
-                    attr.value = selected.value
-                }
-            })
-            return attr
+        //     selected_attr.forEach(selected => {
+        //         if (attr.id === selected.id) {
+        //             attr.value = selected.value
+        //         }
+        //     })
+        //     return attr
 
-        })
+        // })
 
    
         //this.props.productAdder(product)
-        this.setState({refresh:false})
+       /// this.setState({refresh:false})
     }
     
     render() { 
@@ -75,7 +76,7 @@ class Details extends Component {
                                 
                                 { el.id === "Color" ? 
                                 
-                                <ul className={[this.props.style.ul_padder , style.sizer , x, this.props.index].join(' ')}>
+                                <ul  id={x+this.props.index} className={[this.props.style.ul_padder , style.sizer , x+this.props.index+index].join(' ')}>
                                     {   el.items.map( (item , index) => {
                                          const selected = selected_attr.filter( attr => attr.id === el.id )[0]
                                          const classes = selected.value === index ? style.color_selected : null
@@ -96,7 +97,7 @@ class Details extends Component {
 
                                 
                                 {el.id !== "Color" ? 
-                                <ul className={[this.props.style.ul_padder , style.Not_sizer , x , this.props.index].join(' ')}>
+                                <ul id={x+this.props.index} className={[this.props.style.ul_padder , style.Not_sizer ,x,  x+this.props.index+index].join(' ')}>
                                     {
                                     el.items.map( (item , index) => {
 

@@ -6,7 +6,7 @@ import Nav from "../nav/nav";
 import PLP from "../pages/containers/PLP/PLP";
 import PDP from "../pages/containers/PDP/PDP";
 import CartPage from "../pages/containers/CartPage/CartPage";
-import './style.module.css'
+import style from './style.module.css'
 import {get_category , get_all_categories} from '../../context/models'
 
 class Layout extends Component {
@@ -90,6 +90,21 @@ decremnter = (index) => {
       if(selected !== -1){
         console.log('lost then found')
         product.count = 1
+        const new_arr = arr.filter(procut => procut.id === product.id)
+        console.log({new_arr : new_arr , product : product.selectedAttr})
+        for(let i = 0 ; i< new_arr.length ; i++){
+          
+          if(JSON.stringify(new_arr[i].selectedAttr)  === JSON.stringify(product.selectedAttr) ){
+           // console.log('somehting shouldn')
+           document.querySelector("."+style.errorFlag).classList.add(style.animate)
+            setTimeout(() => {
+              document.querySelector("."+style.errorFlag).classList.remove(style.animate)
+              
+            }, 2000);
+            return
+            
+          }
+        }
         arr.push(product) 
         this.setState({cart : arr})
         return
@@ -195,6 +210,8 @@ decremnter = (index) => {
 
             <Route element={() => { <h1>Page Not Found</h1> }} />
           </Routes>
+
+          <p className={style.errorFlag}>Please Change The attributes first</p>
         </BrowserRouter>
 
       </Wrapper>

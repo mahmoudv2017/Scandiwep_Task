@@ -6,14 +6,14 @@ import scrollbar from './scrollbar/scrollbar.module.css'
 import {get_product} from '../../../../context/models'
 import {Interweave} from 'interweave'
 
-const selected_attr = []
+
 
 class PDP extends Component {
 
 
     state = {
         selected_index: 0,
-
+        selected_attr : [],
         selected_product: null
     }
 
@@ -23,11 +23,11 @@ class PDP extends Component {
             list.classList.remove(style.selected, style.color_selected)
         })
         type === 'Color' ? e.target.classList.add(style.color_selected) : e.target.classList.add(style.selected)
-
-        const checker = selected_attr.find(attr => attr.id === type)
+        const attributes = this.state.selected_attr
+        const checker = attributes.find(attr => attr.id === type)
         if (checker) { checker.value = index }
         else {
-            selected_attr.push({
+            attributes.push({
                 id: type, value: index
             })
         }
@@ -38,7 +38,7 @@ class PDP extends Component {
         const product = this.state.selected_product
         product.selectedAttr.map(attr => {
 
-            selected_attr.forEach(selected => {
+            attributes.forEach(selected => {
                 if (attr.id === selected.id) {
                     attr.value = selected.value
                 }
@@ -47,7 +47,7 @@ class PDP extends Component {
 
         })
 
-        this.setState({ selected_product: product })
+        this.setState({ selected_product: product , selected_attr : attributes})
     }
 
 
@@ -78,13 +78,12 @@ class PDP extends Component {
 
     render() {
 
-        let images, x, selected_attr , y
+        let images, x , y
 
    
         if (this.state.selected_product) {
 
             x = this.state.selected_product.inStock ? style.inStock : style.outStock
-            selected_attr = this.state.selected_product.selectedAttr
 
             images = this.state.selected_product.gallery.map((image_link, index) => {
                 return <img key={index} src={image_link} onClick={() => {
@@ -141,9 +140,9 @@ class PDP extends Component {
                                             <ul className={[style.ul_padder, style.sizer, x].join(' ')}>
                                                 {
                                                     el.items.map((item, index) => {
-                                                        const selected = selected_attr.filter(attr => attr.id === el.id)[0]
+                                                       // const selected = selected_attr.filter(attr => attr.id === el.id)[0]
 
-                                                        const classes = selected.value === index ? style.color_selected : null
+                                                        const classes = index === 0 ? style.color_selected : null
                                                         return <li key={index} className={classes} onClick={(e) => this.orderPrep(e, x, el.id, index)} style={{ backgroundColor: item.value, border: 'none' }} ></li>
                                                     })
                                                 }
@@ -160,9 +159,9 @@ class PDP extends Component {
                                             <ul className={[style.ul_padder, style.Not_sizer, x].join(' ')}>
                                                 {
                                                     el.items.map((item, index) => {
-                                                        const selected = selected_attr.filter(attr => attr.id === el.id)[0]
+                                                        //const selected = selected_attr.filter(attr => attr.id === el.id)[0]
 
-                                                        const classes = selected.value === index ? style.selected : null
+                                                        const classes = index === 0 ? style.selected : null
                                                         return <li key={index} className={classes} onClick={(e) => this.orderPrep(e, x, el.id, index)} >{item.value}</li>
                                                     })
                                                 }
@@ -188,7 +187,6 @@ class PDP extends Component {
                         { y = this.state.selected_product.inStock}
                             <Link to="/" className={y ? '' : style.inactive}>
                                 <button className={[x].join(' ')} onClick={() => {
-                                    selected_attr = []
                                     this.props.ProductAdder(this.state.selected_product)
 
                                 }}>{this.state.selected_product.inStock ? 'Add To Cart' : 'Out Of Stock'}</button>
