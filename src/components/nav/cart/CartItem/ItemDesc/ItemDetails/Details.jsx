@@ -13,7 +13,6 @@ class Details extends Component {
 
      
       
-        console.log(x)
         document.querySelectorAll('#'+x+' li').forEach(list => {
            
             list.classList.remove(style.selected , style.color_selected)
@@ -51,7 +50,7 @@ class Details extends Component {
                                 
                                 { el.id === "Color" ? 
                                 
-                                <ul  id={x+this.props.index} className={[this.props.style.ul_padder , style.sizer , x+this.props.index+index].join(' ')}>
+                                <ul  id={x+this.props.index} className={[this.props.style.ul_padder , style.sizer ,x, x+this.props.index+index].join(' ')}>
                                     {   el.items.map( (item , index) => {
                                          const selected = selected_attr.filter( attr => attr.id === el.id )[0]
                                          const classes = selected.value === index ? style.color_selected : null
