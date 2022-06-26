@@ -33,7 +33,6 @@
 }
 
 .sizer li{
-    /* border: 2px solid black; */
     
     font-family: 'Source Sans Pro';
     font-style: normal;
@@ -81,7 +80,6 @@
 .color_selected{
 
     position: relative;
-    /* border: 1px solid rgb(68, 255, 3); */
 }
 
 .color_selected::after{
@@ -114,10 +112,7 @@
 
 .pad_left p{
     width: 80%;
-    /* font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 4px; */
+  
 }
 
 .subheader{
