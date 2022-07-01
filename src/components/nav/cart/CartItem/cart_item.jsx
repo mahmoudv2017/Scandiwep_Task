@@ -15,7 +15,6 @@ class CartItem extends Component {
 
    
 
-      //  const x = 
 
         
        return (

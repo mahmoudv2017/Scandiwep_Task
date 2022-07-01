@@ -2,7 +2,6 @@ import { Component } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Wrapper from "../hoc/wrapper";
 import Nav from "../nav/nav";
-// import axios from "../../Axios";
 import PLP from "../pages/containers/PLP/PLP";
 import PDP from "../pages/containers/PDP/PDP";
 import CartPage from "../pages/containers/CartPage/CartPage";
@@ -38,8 +37,7 @@ class Layout extends Component {
 
   }
 
-// this is not a duplicated request because componentDidUpdate Only triggers when the state or props are updated and
-// is not triggered at the inilization like componentDidMount which i only used to get inital products
+
 componentDidUpdate(prevprops , prevState){
   if (this.state.category_selector !== prevState.category_selector) {
    
@@ -93,7 +91,6 @@ decremnter = (index) => {
         for(let i = 0 ; i< new_arr.length ; i++){
           
           if(JSON.stringify(new_arr[i].selectedAttr)  === JSON.stringify(product.selectedAttr) ){
-           // console.log('somehting shouldn')
            document.querySelector("."+style.errorFlag).classList.add(style.animate)
             setTimeout(() => {
               document.querySelector("."+style.errorFlag).classList.remove(style.animate)

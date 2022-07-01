@@ -39,22 +39,6 @@ const get_currencies = async () => {
    
    }
 
-// const get_plp_data = async (cat) => {
-//   const values = Promise.all([
-//         get_category(cat),
-//         get_all_categories()
-//     ])
 
-//     return values
-// }
-
-
-//  Promise.all([
-//     get_category('tech'),
-//     get_all_categories()
-// ]).then(values => {
-//     console.log({products : values[0].data , all_cates : values[1].data})
-
-// })
 
 module.exports = {get_category , get_currencies , get_all_categories , get_product}
