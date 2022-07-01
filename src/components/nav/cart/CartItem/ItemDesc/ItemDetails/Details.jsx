@@ -57,7 +57,7 @@ class Details extends Component {
                                         
                                 return (
                                     
-                                    <li key={index} className={classes} onClick={ (e) => this.orderPrep(e , x , el.id , index , this.props.index)} style={{backgroundColor : item.value  }}  ></li>
+                                    <li key={index} className={classes}  style={{backgroundColor : item.value  }}  ></li>
                                
                                 )  
                                 } ) }
@@ -80,7 +80,7 @@ class Details extends Component {
                                         if(selected){
                                              classes = selected.value === index ? style.selected : null
                                         }
-                                        return  <li key={index} className={classes}  onClick={ (e) => this.orderPrep(e , x , el.id , index, this.props.index)} >{item.value}</li>
+                                        return  <li key={index} className={classes}  >{item.value}</li>
                                         } )
                                     } 
                                     </ul> : false}
