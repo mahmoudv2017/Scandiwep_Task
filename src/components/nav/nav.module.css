@@ -1,7 +1,5 @@
 /* unordered list styling */
-*{
-    font-family: 'Raleway';
-}
+
 ul{
     list-style: none;
 }

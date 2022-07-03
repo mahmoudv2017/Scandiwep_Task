@@ -51,9 +51,9 @@ class CartPage extends Component {
 
                 <div className={style.total}>
                 
-                    <p>Tax 21% : <span>{totaler.symbol} { Math.round( (totaler.total * (21/100)) *10 )/10 }</span> </p>
+                    <p>Tax 21% : <span>{totaler.symbol} { Number( (totaler.total * (21/100))).toFixed(2) }</span> </p>
                     <p>Qunatity : <span> {totaler.counter}</span></p>
-                    <p>Total : <span> {totaler.symbol}  {Math.round(totaler.total * 10) / 10}</span></p>
+                    <p>Total : <span> {totaler.symbol}  {Number(totaler.total).toFixed(2)}</span></p>
                     
                     <button onClick={this.prep_order} className={style.orderButton}>Order Now</button>
 

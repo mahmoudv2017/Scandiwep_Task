@@ -83,19 +83,20 @@ decremnter = (index) => {
 
   ProductAdder = (product ) => {
 
-    const arr = this.state.cart
+    const arr = [...this.state.cart]
     const selected = arr.findIndex( procut => procut.id === product.id )
       if(selected !== -1){
         product.count = 1
-        const new_arr = arr.filter(procut => procut.id === product.id)
-        for(let i = 0 ; i< new_arr.length ; i++){
+        for(let i = 0 ; i< arr.length ; i++){
           
-          if(JSON.stringify(new_arr[i].selectedAttr)  === JSON.stringify(product.selectedAttr) ){
-           document.querySelector("."+style.errorFlag).classList.add(style.animate)
-            setTimeout(() => {
-              document.querySelector("."+style.errorFlag).classList.remove(style.animate)
-              
-            }, 2000);
+          if(JSON.stringify(arr[i].selectedAttr)  === JSON.stringify(product.selectedAttr) ){
+            //Adding Product with same attribute checker
+
+            arr[i].count += 1
+          
+
+            this.setState({cart : arr})
+
             return
             
           }

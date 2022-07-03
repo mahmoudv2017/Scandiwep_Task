@@ -37,7 +37,7 @@
 .big_img{
     height: 43rem;
     width: 43rem;
-  
+    position: relative;
     display: flex;
     align-items: center;
  
@@ -51,6 +51,17 @@
     
 }
 
+ .ImageoutStock::after{
+    background-color: white;
+    content: 'Out Of Stock';
+    inset: 0;
+    opacity: .5;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    align-items: center;
+    font-size: 5rem;
+} 
 
 .flex_container .desc div ul{
     list-style: circle ;
@@ -285,7 +296,8 @@ line-height: 27px;
     .flex_container{
         display: grid;
         grid-auto-flow: row;
-        grid-auto-flow: inherit;
+        grid-template-columns: 1fr;
+        grid-template-rows: 42% .5fr 1fr;
     }
 
   

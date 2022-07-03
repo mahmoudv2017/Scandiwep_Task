@@ -72,7 +72,9 @@ class PDP extends Component {
 
     render() {
 
-        let images, x 
+        let images, x
+
+        const images_filter = style.big_img
 
         let product = {...this.state.selected_product}
         if (Object.keys(product).length > 0) {
@@ -105,8 +107,7 @@ class PDP extends Component {
 
                     </div>
 
-
-                    <div className={style.big_img}>
+                    <div className={this.state.selected_product.inStock ? images_filter : images_filter + ' ' + style.ImageoutStock}>
                         <img src={product.gallery[this.state.selected_index]} alt="asdasd" />
                     </div>
 
